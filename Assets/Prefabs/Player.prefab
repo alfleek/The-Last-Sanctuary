@@ -108,6 +108,7 @@ GameObject:
   - component: {fileID: 5050538359019742014}
   - component: {fileID: 3004541311329068044}
   - component: {fileID: 6258532438070902371}
+  - component: {fileID: 6102213304271996321}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -280,7 +281,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92dc541f5056fab4699be96b8e8a6bad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isGrounded: 0
   walkSpeed: 5
   sprintSpeed: 8
   crouchSpeed: 3
@@ -291,6 +291,18 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 8
+--- !u!114 &6102213304271996321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6662679937852716983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 654f05277cd71cc4aaa9b017366c8dcc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8711910807757212117
 GameObject:
   m_ObjectHideFlags: 0
