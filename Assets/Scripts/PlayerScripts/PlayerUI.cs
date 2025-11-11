@@ -5,7 +5,7 @@ using TMPro;
 
 public class PlayerUI : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI propmtText;
+    //[SerializeField] private TextMeshProUGUI propmtText;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,6 +14,6 @@ public class PlayerUI : MonoBehaviour
 
     public void UpdateText(string promptMessage)
     {
-        propmtText.text = promptMessage;
+       // propmtText.text = promptMessage;
     }
 }

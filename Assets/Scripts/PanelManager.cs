@@ -5,10 +5,13 @@ using UnityEngine.UI;
 
 public class PanelManagement : MonoBehaviour
 {
-    [Header(" Game Panels")]
+    [Header(" Game Canvas")]
     public GameObject MainPanel;
     public GameObject InventoryPanel;
     public GameObject SettingsPanel;
+    public GameObject SavePanel;
+    public GameObject AudioPanel;
+    public GameObject CreditsPanel; 
 
     [Header(" Game Buttons")]
     public Button inventoryButton;
@@ -45,14 +48,23 @@ public class PanelManagement : MonoBehaviour
     public Text DayDisplay;
     public TimeManager timeManager;
 
+    [Header(" Saving Elements")]
+    public Button SFXButton;
+    public Button BGMButton;
+
+
+
     // Start is called before the first frame update
     void Start()
     {
         if (MainPanel != null) MainPanel.SetActive(true);
         if (InventoryPanel != null) InventoryPanel.SetActive(false);
         if (SettingsPanel != null) SettingsPanel.SetActive(false);
-
-        if(inventoryButton != null) inventoryButton.gameObject.SetActive(true);
+        if (AudioPanel != null) AudioPanel.SetActive(false);
+        if (CreditsPanel != null) CreditsPanel.SetActive(false);
+        if (SavePanel != null) SavePanel.SetActive(false);
+        
+        if (inventoryButton != null) inventoryButton.gameObject.SetActive(true);
 
     }
 
@@ -94,6 +106,7 @@ public class PanelManagement : MonoBehaviour
             else
                 OpenSettings();
         }
+
     }
 
     void UpdateUI()
@@ -212,6 +225,85 @@ public class PanelManagement : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
 
         Time.timeScale = 1f;
+    }
+
+    public void SaveQuit()
+    {
+        /*
+         Save Game portion 
+         */
+        Application.Quit();
+    }
+
+    public void Audio()
+    {
+        if (CreditsPanel != null)
+        {
+            MainPanel.SetActive(false);
+            SettingsPanel.SetActive(false);
+            AudioPanel.SetActive(true);
+        }
+
+        /*
+         Lower background Audio 
+
+        Lower Sound Effects
+
+        mute button sound effects
+
+        mute sound effects
+         
+         */
+    }
+
+    public void CloseAudio()
+    {
+
+        if (CreditsPanel != null)
+        {
+            AudioPanel.SetActive(false);
+            SettingsPanel.SetActive(true);
+        }
+
+        /*
+         Lower background Audio 
+
+        Lower Sound Effects
+
+        mute button sound effects
+
+        mute sound effects
+         
+         */
+    }
+
+    public void SetBackground()
+    {
+
+    }
+
+    public void SetSFX()
+    {
+
+    }
+
+    public void Credits()
+    {
+        if (CreditsPanel != null)
+        {
+            MainPanel.SetActive(false);
+            SettingsPanel.SetActive(false);
+            CreditsPanel.SetActive(true);
+        }
+    }
+
+    public void CloseCredits()
+    {
+        if (CreditsPanel != null)
+        {
+            CreditsPanel.SetActive(false);
+            SettingsPanel.SetActive(true);
+        }
     }
 
 }
