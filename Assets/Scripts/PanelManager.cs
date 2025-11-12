@@ -5,38 +5,34 @@ using UnityEngine.UI;
 
 public class PanelManagement : MonoBehaviour
 {
-    [Header(" Game Canvas")]
+    [Header("Game Canvas")]
     public GameObject MainPanel;
     public GameObject InventoryPanel;
     public GameObject SettingsPanel;
     public GameObject SavePanel;
     public GameObject AudioPanel;
-    public GameObject CreditsPanel; 
+    public GameObject CraftingPanel;
 
-    [Header(" Game Buttons")]
+    [Header("Game Buttons")]
     public Button inventoryButton;
 
-    [Header(" Health Elements")]
+    [Header("Health Elements")]
     public Image healthBar;
     public Text healthLeft;
 
-    [Header(" Stamina Elements")]
+    [Header("Stamina Elements")]
     public Image staminaBar;
     public Text staminaLeft;
 
-    [Header(" Hunger Elements")]
+    [Header("Hunger Elements")]
     public Image hungerBar;
     public Text hungerLeft;
 
-    [Header(" Hydration Elements")]
-    public Image hydrationBar;
-    public Text hydrationLeft;
-
-    [Header(" Direction Elements")]
+    [Header("Direction Elements")]
     public Transform player;
     public Text Direction;
 
-    //Placeholders for Testing
+    // Placeholders for Testing
     private float health = 100;
     private float stamina = 75;
     private float hunger = 50;
@@ -48,48 +44,21 @@ public class PanelManagement : MonoBehaviour
     public Text DayDisplay;
     public TimeManager timeManager;
 
-    [Header(" Saving Elements")]
-    public Button SFXButton;
-    public Button BGMButton;
-
-
-
-    // Start is called before the first frame update
     void Start()
     {
         if (MainPanel != null) MainPanel.SetActive(true);
         if (InventoryPanel != null) InventoryPanel.SetActive(false);
         if (SettingsPanel != null) SettingsPanel.SetActive(false);
         if (AudioPanel != null) AudioPanel.SetActive(false);
-        if (CreditsPanel != null) CreditsPanel.SetActive(false);
         if (SavePanel != null) SavePanel.SetActive(false);
-        
+        if (CraftingPanel != null) CraftingPanel.SetActive(false);
         if (inventoryButton != null) inventoryButton.gameObject.SetActive(true);
-
     }
 
     void Update()
     {
-        /*if (MainPanel != null)
-        {
-            healthLeft.text = getHealth().ToString();
-            healthBar.fillAmount = getHealth() / 100;
-
-            staminaLeft.text = getStamina().ToString();
-            staminaBar.fillAmount = getStamina() / 100;
-
-            hungerLeft.text = getHunger().ToString();
-            hungerBar.fillAmount = getHunger() / 100;
-
-            hydrationLeft.text = getHydration().ToString();
-            hydrationBar.fillAmount = getHydration() / 100;
-
-            Direction.text = getDirection();
-        */
         if (Time.timeScale == 0f) return;
-
         UpdateUI();
-
 
         if (Input.GetKeyDown(KeyCode.I))
         {
@@ -107,6 +76,13 @@ public class PanelManagement : MonoBehaviour
                 OpenSettings();
         }
 
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if (CraftingPanel.activeSelf)
+                CloseCrafting();
+            else
+                OpenCrafting();
+        }
     }
 
     void UpdateUI()
@@ -128,12 +104,6 @@ public class PanelManagement : MonoBehaviour
             hungerBar.fillAmount = hunger / 100;
         }
 
-        if (hydrationBar != null)
-        {
-            hydrationLeft.text = hydration.ToString();
-            hydrationBar.fillAmount = hydration / 100;
-        }
-
         if (Direction != null && player != null)
         {
             Direction.text = GetCompassDirection(player.forward);
@@ -147,18 +117,16 @@ public class PanelManagement : MonoBehaviour
                 int minutes = timeManager.GetMinutes();
                 string ampm = timeManager.GetAMPM(hours);
 
-                // Convert to 12-hour format
                 int displayHour = hours % 12;
                 if (displayHour == 0) displayHour = 12;
 
-                TimeDisplay.text = $"{displayHour:00}  {minutes:00} {ampm}";
+                TimeDisplay.text = $"{displayHour:00}:{minutes:00} {ampm}";
             }
-        }
 
-        if (DayDisplay != null)
-        {
-
-            DayDisplay.text = timeManager.GetDays().ToString();
+            if (DayDisplay != null)
+            {
+                DayDisplay.text = timeManager.GetDays().ToString();
+            }
         }
     }
 
@@ -186,7 +154,7 @@ public class PanelManagement : MonoBehaviour
             CloseSettings();
 
         if (InventoryPanel != null) InventoryPanel.SetActive(true);
-        inventoryButton.gameObject.SetActive(false);
+        if (inventoryButton != null) inventoryButton.gameObject.SetActive(false);
 
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
@@ -195,11 +163,10 @@ public class PanelManagement : MonoBehaviour
     public void CloseInventory()
     {
         if (InventoryPanel != null) InventoryPanel.SetActive(false);
-        inventoryButton.gameObject.SetActive(true);
+        if (inventoryButton != null) inventoryButton.gameObject.SetActive(true);
 
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-
     }
 
     public void OpenSettings()
@@ -227,84 +194,72 @@ public class PanelManagement : MonoBehaviour
         Time.timeScale = 1f;
     }
 
-    public void SaveQuit()
+    public void YesSave()
     {
-        /*
-         Save Game portion 
-         */
+        StartCoroutine(YesSaveCoroutine());
+    }
+
+    private IEnumerator YesSaveCoroutine()
+    {
+        Debug.Log("Game saved!");
+        yield return new WaitForSeconds(5f);
+        QuitGame();
+    }
+
+    public void QuitGame()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
         Application.Quit();
+#endif
     }
 
     public void Audio()
     {
-        if (CreditsPanel != null)
+        if (AudioPanel != null)
         {
             MainPanel.SetActive(false);
             SettingsPanel.SetActive(false);
             AudioPanel.SetActive(true);
         }
-
-        /*
-         Lower background Audio 
-
-        Lower Sound Effects
-
-        mute button sound effects
-
-        mute sound effects
-         
-         */
     }
 
     public void CloseAudio()
     {
-
-        if (CreditsPanel != null)
+        if (AudioPanel != null)
         {
             AudioPanel.SetActive(false);
             SettingsPanel.SetActive(true);
         }
-
-        /*
-         Lower background Audio 
-
-        Lower Sound Effects
-
-        mute button sound effects
-
-        mute sound effects
-         
-         */
     }
 
-    public void SetBackground()
+    public void OpenSaving()
     {
-
-    }
-
-    public void SetSFX()
-    {
-
-    }
-
-    public void Credits()
-    {
-        if (CreditsPanel != null)
+        if (SavePanel != null)
         {
-            MainPanel.SetActive(false);
             SettingsPanel.SetActive(false);
-            CreditsPanel.SetActive(true);
+            SavePanel.SetActive(true);
         }
     }
 
-    public void CloseCredits()
+    public void OpenCrafting()
     {
-        if (CreditsPanel != null)
-        {
-            CreditsPanel.SetActive(false);
-            SettingsPanel.SetActive(true);
-        }
+        if (InventoryPanel != null && InventoryPanel.activeSelf)
+            CloseInventory();
+
+        if (SettingsPanel != null) SettingsPanel.SetActive(false);
+        if (CraftingPanel != null) CraftingPanel.SetActive(true);
+
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
 
-}
+    public void CloseCrafting()
+    {
+        if (CraftingPanel != null) CraftingPanel.SetActive(false);
 
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+}
