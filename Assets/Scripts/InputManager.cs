@@ -19,6 +19,7 @@ public class InputManager : MonoBehaviour
     private Action<InputAction.CallbackContext> holdCancelHandler;
     private Action<InputAction.CallbackContext> altHoldStartHandler;
     private Action<InputAction.CallbackContext> altHoldCancelHandler;
+    private Action<InputAction.CallbackContext> reloadHandler;
 
 
     void Awake()
@@ -51,11 +52,13 @@ public class InputManager : MonoBehaviour
         holdCancelHandler       = ctx => { if (equippedWeapon) equippedWeapon.HoldAttackStop(); };
         altHoldStartHandler     = ctx => { if (equippedWeapon) equippedWeapon.AltHoldAttackStart(); };
         altHoldCancelHandler    = ctx => { if (equippedWeapon) equippedWeapon.AltHoldAttackStop(); };
+        reloadHandler           = ctx => { if (equippedWeapon) equippedWeapon.Reload(); };
  
         onFoot.Attack.started       += holdStartHandler;
         onFoot.Attack.canceled      += holdCancelHandler;
-        onFoot.AltFire.started      += altHoldStartHandler;    
+        onFoot.AltFire.started      += altHoldStartHandler;
         onFoot.AltFire.canceled     += altHoldCancelHandler;
+        onFoot.Reload.performed     += reloadHandler;
     }
 
     public void UnequipWeapon()
@@ -69,12 +72,14 @@ public class InputManager : MonoBehaviour
         if (holdStartHandler != null)       onFoot.Attack.started   -= holdStartHandler;
         if (holdCancelHandler != null)      onFoot.Attack.canceled -= holdCancelHandler;
         if (altHoldStartHandler != null)    onFoot.AltFire.started   -= altHoldStartHandler;
-        if (altHoldCancelHandler != null)   onFoot.AltFire.canceled  -= altHoldCancelHandler;
+        if (altHoldCancelHandler != null)   onFoot.AltFire.canceled -= altHoldCancelHandler;
+        if (reloadHandler != null)          onFoot.Reload.performed  -= reloadHandler;
 
         holdStartHandler = null;
         holdCancelHandler = null;
         altHoldStartHandler = null;
         altHoldCancelHandler = null;
+        reloadHandler = null;
     }
 
     void Update()

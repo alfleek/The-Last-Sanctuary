@@ -116,6 +116,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Reload"",
+                    ""type"": ""Button"",
+                    ""id"": ""78ad34e4-318a-41d4-a804-4761c2378188"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -331,7 +340,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""b3f66d0b-7751-423f-908b-a11c5bd95930"",
-                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
@@ -380,6 +389,28 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
                     ""action"": ""AltFire"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cf9fd929-2bbb-4f5d-9f0d-dbb29ef20d0b"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Reload"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""15f78f6a-8686-4baf-a729-5f178ac51217"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Reload"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -977,6 +1008,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_OnFoot_Next = m_OnFoot.FindAction("Next", throwIfNotFound: true);
         m_OnFoot_Sprint = m_OnFoot.FindAction("Sprint", throwIfNotFound: true);
         m_OnFoot_AltFire = m_OnFoot.FindAction("AltFire", throwIfNotFound: true);
+        m_OnFoot_Reload = m_OnFoot.FindAction("Reload", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1066,6 +1098,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_OnFoot_Next;
     private readonly InputAction m_OnFoot_Sprint;
     private readonly InputAction m_OnFoot_AltFire;
+    private readonly InputAction m_OnFoot_Reload;
     public struct OnFootActions
     {
         private @PlayerControls m_Wrapper;
@@ -1080,6 +1113,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @Next => m_Wrapper.m_OnFoot_Next;
         public InputAction @Sprint => m_Wrapper.m_OnFoot_Sprint;
         public InputAction @AltFire => m_Wrapper.m_OnFoot_AltFire;
+        public InputAction @Reload => m_Wrapper.m_OnFoot_Reload;
         public InputActionMap Get() { return m_Wrapper.m_OnFoot; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1119,6 +1153,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @AltFire.started += instance.OnAltFire;
             @AltFire.performed += instance.OnAltFire;
             @AltFire.canceled += instance.OnAltFire;
+            @Reload.started += instance.OnReload;
+            @Reload.performed += instance.OnReload;
+            @Reload.canceled += instance.OnReload;
         }
 
         private void UnregisterCallbacks(IOnFootActions instance)
@@ -1153,6 +1190,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @AltFire.started -= instance.OnAltFire;
             @AltFire.performed -= instance.OnAltFire;
             @AltFire.canceled -= instance.OnAltFire;
+            @Reload.started -= instance.OnReload;
+            @Reload.performed -= instance.OnReload;
+            @Reload.canceled -= instance.OnReload;
         }
 
         public void RemoveCallbacks(IOnFootActions instance)
@@ -1345,6 +1385,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnNext(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
         void OnAltFire(InputAction.CallbackContext context);
+        void OnReload(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

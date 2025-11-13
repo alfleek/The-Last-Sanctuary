@@ -11,7 +11,9 @@ public class ZombieNavigation : MonoBehaviour
     public Animator animator;
     private float speed;
     [SerializeField] private float attackTimer;
+    [SerializeField] private float health = 100f;
     private float lastAttack;
+    public bool dead = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,9 +25,24 @@ public class ZombieNavigation : MonoBehaviour
         lastAttack = attackTimer;
     }
 
+    public void TakeDamage(float damageAmount)
+    {
+        health -= damageAmount;
+
+        if (health <= 0)
+        {
+            animator.SetBool("FallForward", Random.value < 0.5f);
+            animator.SetTrigger("KnockDown");
+            
+            dead = true;
+            agent.enabled = false;
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
+        if (dead) return;
         lastAttack -= Time.deltaTime;
 
         speed = agent.velocity.magnitude;
