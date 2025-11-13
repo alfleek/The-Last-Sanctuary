@@ -9,13 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/StartScreen.unity
     guid: c5c8644a1dc8051488263cf386beade7
   - enabled: 1
-    path: Assets/Scenes/OptionsScene.unity
-    guid: 7526b933470323a46bcde17836a45266
-  - enabled: 1
-    path: Assets/Scenes/CreditsScene.unity
-    guid: 4eaed0c2496756f4eb4dd52078f92b85
-  - enabled: 1
-    path: Assets/Scenes/UIImplementation.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
+    path: Assets/Scenes/LevelOne.unity
+    guid: 9570da643d2b9784d9c2d8e2ff9367e4
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: b1f5699562285a545806c6e3fcd0a441, type: 3}

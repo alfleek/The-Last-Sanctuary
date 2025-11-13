@@ -60,7 +60,7 @@ public class PanelManagement : MonoBehaviour
         if (Time.timeScale == 0f) return;
         UpdateUI();
 
-        if (Input.GetKeyDown(KeyCode.I))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
             if (InventoryPanel.activeSelf)
                 CloseInventory();
@@ -152,10 +152,10 @@ public class PanelManagement : MonoBehaviour
     {
         if (SettingsPanel != null && SettingsPanel.activeSelf)
             CloseSettings();
-
         if (InventoryPanel != null) InventoryPanel.SetActive(true);
         if (inventoryButton != null) inventoryButton.gameObject.SetActive(false);
 
+        if (CraftingPanel != null) CraftingPanel.SetActive(false);
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
     }
@@ -164,6 +164,7 @@ public class PanelManagement : MonoBehaviour
     {
         if (InventoryPanel != null) InventoryPanel.SetActive(false);
         if (inventoryButton != null) inventoryButton.gameObject.SetActive(true);
+        
 
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
@@ -223,6 +224,9 @@ public class PanelManagement : MonoBehaviour
             SettingsPanel.SetActive(false);
             AudioPanel.SetActive(true);
         }
+
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
 
     public void CloseAudio()
@@ -232,6 +236,8 @@ public class PanelManagement : MonoBehaviour
             AudioPanel.SetActive(false);
             SettingsPanel.SetActive(true);
         }
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     public void OpenSaving()
@@ -241,13 +247,14 @@ public class PanelManagement : MonoBehaviour
             SettingsPanel.SetActive(false);
             SavePanel.SetActive(true);
         }
+
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
 
     public void OpenCrafting()
     {
-        if (InventoryPanel != null && InventoryPanel.activeSelf)
-            CloseInventory();
-
+        if (InventoryPanel != null) InventoryPanel.SetActive(false);
         if (SettingsPanel != null) SettingsPanel.SetActive(false);
         if (CraftingPanel != null) CraftingPanel.SetActive(true);
 
