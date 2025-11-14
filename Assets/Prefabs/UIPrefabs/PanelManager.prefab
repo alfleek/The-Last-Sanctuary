@@ -49,7 +49,7 @@ MonoBehaviour:
   SettingsPanel: {fileID: 0}
   SavePanel: {fileID: 0}
   AudioPanel: {fileID: 0}
-  CreditsPanel: {fileID: 0}
+  CraftingPanel: {fileID: 0}
   inventoryButton: {fileID: 0}
   healthBar: {fileID: 0}
   healthLeft: {fileID: 0}
@@ -57,12 +57,8 @@ MonoBehaviour:
   staminaLeft: {fileID: 0}
   hungerBar: {fileID: 0}
   hungerLeft: {fileID: 0}
-  hydrationBar: {fileID: 0}
-  hydrationLeft: {fileID: 0}
   player: {fileID: 0}
   Direction: {fileID: 0}
   TimeDisplay: {fileID: 0}
   DayDisplay: {fileID: 0}
   timeManager: {fileID: 0}
-  SFXButton: {fileID: 0}
-  BGMButton: {fileID: 0}

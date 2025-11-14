@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/StartScreen.unity
     guid: c5c8644a1dc8051488263cf386beade7
   - enabled: 1
-    path: Assets/Scenes/LevelOne.unity
+    path: Assets/Scenes/LevelOneUI.unity
     guid: 9570da643d2b9784d9c2d8e2ff9367e4
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: b1f5699562285a545806c6e3fcd0a441, type: 3}
