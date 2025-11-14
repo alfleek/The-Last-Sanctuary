@@ -7,7 +7,7 @@ A tense zombie survival game where players scavenge, craft, and farm essential m
 - Jazmin Carlos: Game Designer (Terrain & UI)  
 - Alexander Lewis: Game Programmer(Player Controls & Core Mechanics)
 
-###Format: 
+### Format: 
 3D | First-Person | Open-World Survival / Tower Defense
 
 ## Check-In #1 : 
