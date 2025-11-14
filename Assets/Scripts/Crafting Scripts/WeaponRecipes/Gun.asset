@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   recipeName: Gun
   description: Your best Defense from zombies.
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: a2a3032897deb90459843f5144c0b07a, type: 3}
   neededIngredients:
   - Metal
   - Stone

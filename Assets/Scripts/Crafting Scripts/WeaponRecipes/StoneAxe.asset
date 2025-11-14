@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   recipeName: Stone Axe
   description: 
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 204f26b17e4089f40bb225f006ba031d, type: 3}
   neededIngredients:
   - Stone
   - Sticks

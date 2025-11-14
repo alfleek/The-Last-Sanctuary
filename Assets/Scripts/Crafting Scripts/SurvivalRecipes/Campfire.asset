@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   recipeName: Campfire
   description: A simple stone campfire used for cooking and warmth.
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 59b14645daf00c542ab20b6770f928db, type: 3}
   neededIngredients:
   - Stone
   - Stick

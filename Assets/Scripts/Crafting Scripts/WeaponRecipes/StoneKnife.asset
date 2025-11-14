@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   recipeName: Stone Knife
   description: 
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 893a01fd2387ca74ca43e08446c5f253, type: 3}
   neededIngredients:
   - Sticks
   - Stone

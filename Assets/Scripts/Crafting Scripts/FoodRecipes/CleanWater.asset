@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   recipeName: Clean Water
   description: Water to deter Thirst.
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: fe928b40008447c4f900bb2a2751e434, type: 3}
   neededIngredients:
   - Water
   - Cooking Pot

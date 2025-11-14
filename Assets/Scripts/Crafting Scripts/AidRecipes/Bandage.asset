@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   recipeName: Bandage
   description: Help heal and damage
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 75844603bf39149459d2ce2b238e62e3, type: 3}
   neededIngredients:
   - Cloth
   NumNeededIngredients:

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   recipeName: Bullets
   description: SO you can use the gun
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: b1ca4739b71c41647a52033b4fcbe175, type: 3}
   neededIngredients:
   - Metal
   - Gunpowder

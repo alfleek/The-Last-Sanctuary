@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   recipeName: Flashlight
   description: Provides light in dark areas.
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 536fc58a72247574596179c3d2feece6, type: 3}
   neededIngredients:
   - Glass
   - Metal

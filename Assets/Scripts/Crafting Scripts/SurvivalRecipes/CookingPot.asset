@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   recipeName: Cooking Pot
   description: Help heat and boil food.
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: ab89c74fdb1f60a4394003768a4d5aa1, type: 3}
   neededIngredients:
   - Metal
   NumNeededIngredients:
