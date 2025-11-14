@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3149378658008496478}
   - component: {fileID: 6794516564462248533}
   - component: {fileID: 596683787582951649}
+  - component: {fileID: 7171827077458822819}
   m_Layer: 0
   m_Name: CraftingManager
   m_TagString: Untagged
@@ -26,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3750649551630653258}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1040.3019, y: 550.8492, z: -2.4330382}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -45,21 +46,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb6f8468f1dc9b84eae3aacc2b805be2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  survivalRecipes: {fileID: 11400000, guid: f410ba3dae1f7a24fb062c2d66c92940, type: 2}
+  medicalRecipes: {fileID: 11400000, guid: 525609bf3d58f6f48a1497d74a550400, type: 2}
+  foodRecipes: {fileID: 11400000, guid: 081a332dc91134b4f939ea059a22d93f, type: 2}
+  weaponRecipes: {fileID: 11400000, guid: e6d4db9337cb8d144bf9d653af2bf80c, type: 2}
   ObjectTitle: {fileID: 0}
   Description: {fileID: 0}
   ObjectImage: {fileID: 0}
-  Ingredent1: {fileID: 0}
-  Ingredent2: {fileID: 0}
-  Ingredent3: {fileID: 0}
-  Ingredent4: {fileID: 0}
-  IngredentNeeded1: {fileID: 0}
-  IngredentNeeded2: {fileID: 0}
-  IngredentNeeded3: {fileID: 0}
-  IngredentNeeded4: {fileID: 0}
-  UserHas1: {fileID: 0}
-  UserHas2: {fileID: 0}
-  UserHas3: {fileID: 0}
-  UserHas4: {fileID: 0}
+  ingredientTexts:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  neededTexts:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  haveTexts:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &596683787582951649
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -77,3 +85,17 @@ MonoBehaviour:
   WeaponsTab: {fileID: 0}
   MedicalTab: {fileID: 0}
   CurrentTab: {fileID: 0}
+--- !u!114 &7171827077458822819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3750649551630653258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbedb5c4fc880e3469819036c87d5e42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  craftitem: {fileID: 0}
+  Craftable: 0

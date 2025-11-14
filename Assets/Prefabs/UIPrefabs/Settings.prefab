@@ -97,7 +97,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2200716702681003049
 RectTransform:
   m_ObjectHideFlags: 0
@@ -308,7 +308,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PanelManagement, Assembly-CSharp
-        m_MethodName: SaveQuit
+        m_MethodName: OpenSaving
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
