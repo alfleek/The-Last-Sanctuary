@@ -236,8 +236,8 @@ public class PanelManagement : MonoBehaviour
             AudioPanel.SetActive(false);
             SettingsPanel.SetActive(true);
         }
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.visible = false;
+        //Cursor.lockState = CursorLockMode.Locked;
     }
 
     public void OpenSaving()
