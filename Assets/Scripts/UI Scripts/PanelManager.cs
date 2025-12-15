@@ -28,16 +28,22 @@ public class PanelManagement : MonoBehaviour
     public Image hungerBar;
     public Text hungerLeft;
 
+    [Header("Hunger Elements")]
+    public Image thirstBar;
+    public Text thirstLeft;
+
     [Header("Direction Elements")]
     public Transform player;
     public Text Direction;
 
+    public PlayerMotor playerMoter;
+
     // Placeholders for Testing
-    private float health = 100;
-    private float stamina = 75;
-    private float hunger = 50;
-    private float hydration = 80;
-    private string direction = "N";
+    private float health;
+    private float stamina;
+    private float hunger;
+    private float thirst;
+    private string direction;
 
     [Header("Time Elements")]
     public Text TimeDisplay;
@@ -53,6 +59,9 @@ public class PanelManagement : MonoBehaviour
         if (SavePanel != null) SavePanel.SetActive(false);
         if (CraftingPanel != null) CraftingPanel.SetActive(false);
         if (inventoryButton != null) inventoryButton.gameObject.SetActive(true);
+
+        if (playerMoter == null)
+            playerMoter = FindObjectOfType<PlayerMotor>();
     }
 
     void Update()
@@ -89,20 +98,31 @@ public class PanelManagement : MonoBehaviour
     {
         if (healthBar != null)
         {
+            health = Mathf.RoundToInt(playerMoter.getMaxHealth());
             healthLeft.text = health.ToString();
             healthBar.fillAmount = health / 100;
         }
         if (staminaBar != null)
         {
+            stamina = Mathf.RoundToInt(playerMoter.getStamina());
             staminaLeft.text = stamina.ToString();
-            staminaBar.fillAmount = stamina / 100;
+            staminaBar.fillAmount = stamina / playerMoter.getMaxStamina();
         }
 
         if (hungerBar != null)
         {
+            hunger = Mathf.RoundToInt(playerMoter.getHunger());
             hungerLeft.text = hunger.ToString();
-            hungerBar.fillAmount = hunger / 100;
+            hungerBar.fillAmount = hunger / playerMoter.getMaxHunger(); ;
         }
+
+        if (thirstBar != null)
+        {
+            thirst = Mathf.RoundToInt(playerMoter.getThirst());
+            thirstLeft.text = thirst.ToString();
+            thirstBar.fillAmount = thirst / playerMoter.getMaxThirst();
+        }
+
 
         if (Direction != null && player != null)
         {
@@ -186,6 +206,7 @@ public class PanelManagement : MonoBehaviour
 
     public void CloseSettings()
     {
+        Debug.Log("Close Settings");
         if (SettingsPanel != null) SettingsPanel.SetActive(false);
         if (MainPanel != null) MainPanel.SetActive(true);
 
