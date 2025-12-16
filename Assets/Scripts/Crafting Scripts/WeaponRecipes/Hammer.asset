@@ -15,10 +15,8 @@ MonoBehaviour:
   recipeName: Hammer
   description: 
   icon: {fileID: 21300000, guid: 8437328259337014b947e0614794b9b5, type: 3}
+  craftedItemName: Hammer
   neededIngredients:
   - Stone
   - Sticks
-  NumNeededIngredients:
-  - 3
-  - 2
-  NumAvalaibleIngredients: []
+  NumNeededIngredients: 0300000001000000

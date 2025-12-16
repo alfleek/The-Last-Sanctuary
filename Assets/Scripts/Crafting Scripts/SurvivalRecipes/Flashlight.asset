@@ -15,12 +15,9 @@ MonoBehaviour:
   recipeName: Flashlight
   description: Provides light in dark areas.
   icon: {fileID: 21300000, guid: 536fc58a72247574596179c3d2feece6, type: 3}
+  craftedItemName: Flashlight
   neededIngredients:
   - Metal
   - Wire
   - LightBulb
-  NumNeededIngredients:
-  - 3
-  - 2
-  - 1
-  NumAvalaibleIngredients: []
+  NumNeededIngredients: 030000000200000001000000

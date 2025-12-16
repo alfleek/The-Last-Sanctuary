@@ -9,8 +9,6 @@ public class PanelManagement : MonoBehaviour
     public GameObject MainPanel;
     public GameObject InventoryPanel;
     public GameObject SettingsPanel;
-    public GameObject SavePanel;
-    public GameObject AudioPanel;
     public GameObject CraftingPanel;
 
     [Header("Game Buttons")]
@@ -47,15 +45,12 @@ public class PanelManagement : MonoBehaviour
     public Text DayDisplay;
     public TimeManager timeManager;
 
-    
 
     void Start()
     {
         if (MainPanel != null) MainPanel.SetActive(true);
         if (InventoryPanel != null) InventoryPanel.SetActive(false);
         if (SettingsPanel != null) SettingsPanel.SetActive(false);
-        if (AudioPanel != null) AudioPanel.SetActive(false);
-        if (SavePanel != null) SavePanel.SetActive(false);
         if (CraftingPanel != null) CraftingPanel.SetActive(false);
         if (inventoryButton != null) inventoryButton.gameObject.SetActive(true);
 
@@ -171,7 +166,6 @@ public class PanelManagement : MonoBehaviour
         if (InventoryPanel != null) InventoryPanel.SetActive(true);
         if (inventoryButton != null) inventoryButton.gameObject.SetActive(false);
 
-        if (CraftingPanel != null) CraftingPanel.SetActive(false);
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
     }
@@ -224,61 +218,10 @@ public class PanelManagement : MonoBehaviour
         Time.timeScale = 1f;
     }
 
-    public void YesSave()
-    {
-        StartCoroutine(YesSaveCoroutine());
-    }
-
-    private IEnumerator YesSaveCoroutine()
-    {
-        Debug.Log("Game saved!");
-        yield return new WaitForSeconds(5f);
-        QuitGame();
-    }
-
-    public void QuitGame()
-    {
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-#else
-        Application.Quit();
-#endif
-    }
-
-    public void Audio()
-    {
-        if (AudioPanel != null)
-        {
-            MainPanel.SetActive(false);
-            SettingsPanel.SetActive(false);
-            AudioPanel.SetActive(true);
-        }
-
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
-    }
-
-    public void CloseAudio()
-    {
-        if (AudioPanel != null)
-        {
-            AudioPanel.SetActive(false);
-            SettingsPanel.SetActive(true);
-        }
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
-    }
 
     public void OpenSaving()
     {
-        if (SavePanel != null)
-        {
-            SettingsPanel.SetActive(false);
-            SavePanel.SetActive(true);
-        }
-
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
+        Application.Quit();
     }
 
     public void OpenCrafting()
@@ -286,7 +229,6 @@ public class PanelManagement : MonoBehaviour
         if (playerLook != null)
             playerLook.SetLookEnabled(false);
 
-        if (InventoryPanel != null) InventoryPanel.SetActive(false);
         if (SettingsPanel != null) SettingsPanel.SetActive(false);
         if (CraftingPanel != null) CraftingPanel.SetActive(true);
 
@@ -299,6 +241,7 @@ public class PanelManagement : MonoBehaviour
         if (playerLook != null)
             playerLook.SetLookEnabled(true);
 
+        if (InventoryPanel != null) SettingsPanel.SetActive(false);
         if (CraftingPanel != null) CraftingPanel.SetActive(false);
 
         Cursor.visible = false;
