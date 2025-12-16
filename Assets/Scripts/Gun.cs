@@ -6,11 +6,13 @@ public class Gun : Weapon
 {
     [Header("Gun Settings")]
     public float fireRate = 10f;
+    private float firingInterval;
     public bool automatic = true;
     public float reloadTime;
     public int magazineSize, remainingBullets;
     public bool isReloading;
     public bool allowFireWhileAiming = true;
+    public float inputBuffer = 0.2f;
     public GameObject bulletPrefab;
     public Transform bulletSpawn;
     public float bulletVelocity = 30;
@@ -21,7 +23,7 @@ public class Gun : Weapon
 
     private Coroutine firingLoop;
     private bool isAiming;
-    private float lastShot;
+    private float lastShot = 0f;
 
     public InputManager playerInput;
     private Animator animator;
@@ -31,11 +33,18 @@ public class Gun : Weapon
     {
         animator = GetComponent<Animator>();
         remainingBullets = magazineSize;
+        firingInterval = 1f / Mathf.Max(0.01f, fireRate);
     }
 
     public void Start()
     {
-        if (playerInput) playerInput.EquipWeapon(gameObject.GetComponent<Gun>());
+        if (playerInput && gameObject.activeSelf) playerInput.EquipWeapon(gameObject.GetComponent<Gun>());
+    }
+
+    public void Update()
+    {
+        lastShot -= Time.deltaTime;
+        attackDetectionTime -= Time.deltaTime;
     }
     public override void HoldAttackStart()
     {
@@ -58,17 +67,19 @@ public class Gun : Weapon
     {
         if (isReloading) return;
         isAiming = true;
+        animator.SetBool("ADS", true);
     }
 
     public override void AltHoldAttackStop()
     {
         isAiming = false;
+        animator.SetBool("ADS", false);
     }
 
     public override void SingleAttack()
     {
-        if (!bulletPrefab || !bulletSpawn) return;
-
+        lastShot = firingInterval;
+        attackDetectionTime = 0.2f;
         remainingBullets -= 1;
         muzzleFlash.GetComponent<ParticleSystem>().Play();
         animator.SetTrigger("RECOIL");
@@ -131,6 +142,14 @@ public class Gun : Weapon
 
     private IEnumerator FiringCoroutine()
     {
+        if (lastShot > 0f) {
+            if (lastShot > inputBuffer)
+            {
+                firingLoop = null;
+                yield break;
+            }
+            yield return new WaitForSeconds(firingInterval);
+        }
         // Single immediate shot (covers quick taps)
         SingleAttack();
 
@@ -141,13 +160,11 @@ public class Gun : Weapon
             yield break;
         }
 
-        float interval = 1f / Mathf.Max(0.01f, fireRate);
-
         // Keep firing while button held (InputManager will stop us on release)
         while (true)
         {
             if (isReloading) yield break;
-            yield return new WaitForSeconds(interval);
+            yield return new WaitForSeconds(firingInterval);
             if (allowFireWhileAiming || !isAiming)
                 SingleAttack();
         }

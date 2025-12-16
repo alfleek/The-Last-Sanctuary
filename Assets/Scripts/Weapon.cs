@@ -7,6 +7,8 @@ public class Weapon : MonoBehaviour
     [Header("Base Weapon Settings")]
     public float durability;
     public float baseDamage;
+    public float attackDetectionRange;
+    public float attackDetectionTime = 0f;
 
     // Update is called once per frame
     void Update()
