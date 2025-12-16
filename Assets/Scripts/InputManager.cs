@@ -86,7 +86,7 @@ public class InputManager : MonoBehaviour
     void Update()
     {
         
-        if (panelManager.InventoryPanel.activeSelf || panelManager.SettingsPanel.activeSelf || panelManager.SavePanel.activeSelf || panelManager.CraftingPanel.activeSelf)
+        if (panelManager.InventoryPanel.activeSelf || panelManager.SettingsPanel.activeSelf || panelManager.CraftingPanel.activeSelf)
         {
             onFoot.Disable();
         }

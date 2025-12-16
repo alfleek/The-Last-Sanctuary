@@ -51,7 +51,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3443543272448255330
 Transform:
   m_ObjectHideFlags: 0
@@ -132,6 +132,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   durability: 100
   baseDamage: 10
+  attackDetectionRange: 0
+  attackDetectionTime: 0
   fireRate: 6
   automatic: 1
   reloadTime: 1.5
@@ -139,6 +141,7 @@ MonoBehaviour:
   remainingBullets: 0
   isReloading: 0
   allowFireWhileAiming: 1
+  inputBuffer: 0.2
   bulletPrefab: {fileID: 7398615929915704883, guid: d039e829cb26e3448833dbcdd63d2fc8, type: 3}
   bulletSpawn: {fileID: 8557634011924963921}
   bulletVelocity: 100

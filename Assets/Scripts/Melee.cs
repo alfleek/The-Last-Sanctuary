@@ -31,7 +31,7 @@ public class Melee : Weapon
     // Update is called once per frame
     void Update()
     {
-        if(attackInput) Attack();
+        if (attackInput) Attack();
     }
 
     public override void HoldAttackStart()
@@ -46,7 +46,7 @@ public class Melee : Weapon
 
     public void Attack()
     {
-        if(!readyToAttack || attacking) return;
+        if (!readyToAttack || attacking) return;
 
         animator.SetTrigger("Attack");
 
@@ -56,7 +56,7 @@ public class Melee : Weapon
         Invoke(nameof(ResetAttack), attackSpeed);
         Invoke(nameof(AttackRaycast), attackDelay);
 
-        
+
 
     }
 
@@ -68,23 +68,23 @@ public class Melee : Weapon
 
     void AttackRaycast()
     {
-        if(Physics.Raycast(cam.transform.position, cam.transform.forward, out RaycastHit hit, attackDistance, attackLayer))
-        { 
-
+        if (Physics.Raycast(cam.transform.position, cam.transform.forward, out RaycastHit hit, attackDistance, attackLayer, QueryTriggerInteraction.Collide))
+        {
+            Debug.Log("Raycast hit " + hit.collider);
             Collider other = hit.collider;
 
-        if (other.CompareTag("Zombie") || other.CompareTag("ZombieHand"))
-        {
-            float mult = other.GetComponent<ZombieHitbox>().damageMult;
-            var zombie = other.transform.root.GetComponent<ZombieNavigation>();
-            if (zombie != null && !zombie.dead)
+            if (other.CompareTag("Zombie") || other.CompareTag("ZombieHand"))
             {
-                zombie.TakeDamage(baseDamage * mult);
-            }
+                float mult = other.GetComponent<ZombieHitbox>().damageMult;
+                var zombie = other.transform.root.GetComponent<ZombieNavigation>();
+                if (zombie != null && !zombie.dead)
+                {
+                    zombie.TakeDamage(baseDamage * mult);
+                }
 
-            CreateBloodSpray(other.transform, hit.point, hit.normal);
+                CreateBloodSpray(other.transform, hit.point, hit.normal);
+            }
         }
-        } 
     }
 
     private void CreateBloodSpray(Transform parent, Vector3 hitPoint, Vector3 hitNormal)

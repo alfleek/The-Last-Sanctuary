@@ -9,8 +9,6 @@ public class PanelManagement : MonoBehaviour
     public GameObject MainPanel;
     public GameObject InventoryPanel;
     public GameObject SettingsPanel;
-    public GameObject SavePanel;
-    public GameObject AudioPanel;
     public GameObject CraftingPanel;
 
     [Header("Game Buttons")]
@@ -28,15 +26,12 @@ public class PanelManagement : MonoBehaviour
     public Image hungerBar;
     public Text hungerLeft;
 
-    [Header("Hunger Elements")]
-    public Image thirstBar;
-    public Text thirstLeft;
-
     [Header("Direction Elements")]
     public Transform player;
     public Text Direction;
 
     public PlayerMotor playerMoter;
+    public PlayerLook playerLook;
 
     // Placeholders for Testing
     private float health;
@@ -50,23 +45,24 @@ public class PanelManagement : MonoBehaviour
     public Text DayDisplay;
     public TimeManager timeManager;
 
+
     void Start()
     {
         if (MainPanel != null) MainPanel.SetActive(true);
         if (InventoryPanel != null) InventoryPanel.SetActive(false);
         if (SettingsPanel != null) SettingsPanel.SetActive(false);
-        if (AudioPanel != null) AudioPanel.SetActive(false);
-        if (SavePanel != null) SavePanel.SetActive(false);
         if (CraftingPanel != null) CraftingPanel.SetActive(false);
         if (inventoryButton != null) inventoryButton.gameObject.SetActive(true);
 
-        if (playerMoter == null)
-            playerMoter = FindObjectOfType<PlayerMotor>();
+        if (playerMoter == null) playerMoter = FindObjectOfType<PlayerMotor>();
+
+        if (playerLook == null) playerLook = FindObjectOfType<PlayerLook>();
     }
 
     void Update()
     {
-        if (Time.timeScale == 0f) return;
+        if (playerMoter == null) return;
+
         UpdateUI();
 
         if (Input.GetKeyDown(KeyCode.Q))
@@ -98,9 +94,9 @@ public class PanelManagement : MonoBehaviour
     {
         if (healthBar != null)
         {
-            health = Mathf.RoundToInt(playerMoter.getMaxHealth());
+            health = Mathf.RoundToInt(playerMoter.getHealth());
             healthLeft.text = health.ToString();
-            healthBar.fillAmount = health / 100;
+            healthBar.fillAmount = health / playerMoter.getMaxHunger();
         }
         if (staminaBar != null)
         {
@@ -115,14 +111,6 @@ public class PanelManagement : MonoBehaviour
             hungerLeft.text = hunger.ToString();
             hungerBar.fillAmount = hunger / playerMoter.getMaxHunger(); ;
         }
-
-        if (thirstBar != null)
-        {
-            thirst = Mathf.RoundToInt(playerMoter.getThirst());
-            thirstLeft.text = thirst.ToString();
-            thirstBar.fillAmount = thirst / playerMoter.getMaxThirst();
-        }
-
 
         if (Direction != null && player != null)
         {
@@ -170,124 +158,93 @@ public class PanelManagement : MonoBehaviour
     // Opening Panels 
     public void OpenInventory()
     {
+        if (playerLook != null)
+            playerLook.SetLookEnabled(false);
+
         if (SettingsPanel != null && SettingsPanel.activeSelf)
             CloseSettings();
         if (InventoryPanel != null) InventoryPanel.SetActive(true);
         if (inventoryButton != null) inventoryButton.gameObject.SetActive(false);
 
-        if (CraftingPanel != null) CraftingPanel.SetActive(false);
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
+        // Cursor.visible = true;
+        // Cursor.lockState = CursorLockMode.None;
     }
 
     public void CloseInventory()
     {
+
+        if (playerLook != null && !CraftingPanel.activeSelf)
+            playerLook.SetLookEnabled(true);
+
         if (InventoryPanel != null) InventoryPanel.SetActive(false);
         if (inventoryButton != null) inventoryButton.gameObject.SetActive(true);
         
 
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        // Cursor.visible = false;
+        // Cursor.lockState = CursorLockMode.Locked;
     }
 
     public void OpenSettings()
     {
+        if (playerLook != null)
+            playerLook.SetLookEnabled(false);
+
         if (InventoryPanel != null && InventoryPanel.activeSelf)
             CloseInventory();
 
         if (SettingsPanel != null) SettingsPanel.SetActive(true);
         if (MainPanel != null) MainPanel.SetActive(false);
 
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
+        // Cursor.visible = true;
+        // Cursor.lockState = CursorLockMode.None;
 
         Time.timeScale = 0f;
     }
 
     public void CloseSettings()
     {
+
+        if (playerLook != null && !InventoryPanel.activeSelf && !CraftingPanel.activeSelf)
+            playerLook.SetLookEnabled(true);
+
         Debug.Log("Close Settings");
+
         if (SettingsPanel != null) SettingsPanel.SetActive(false);
         if (MainPanel != null) MainPanel.SetActive(true);
 
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        // Cursor.visible = false;
+        // Cursor.lockState = CursorLockMode.Locked;
 
         Time.timeScale = 1f;
     }
 
-    public void YesSave()
-    {
-        StartCoroutine(YesSaveCoroutine());
-    }
-
-    private IEnumerator YesSaveCoroutine()
-    {
-        Debug.Log("Game saved!");
-        yield return new WaitForSeconds(5f);
-        QuitGame();
-    }
-
-    public void QuitGame()
-    {
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-#else
-        Application.Quit();
-#endif
-    }
-
-    public void Audio()
-    {
-        if (AudioPanel != null)
-        {
-            MainPanel.SetActive(false);
-            SettingsPanel.SetActive(false);
-            AudioPanel.SetActive(true);
-        }
-
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
-    }
-
-    public void CloseAudio()
-    {
-        if (AudioPanel != null)
-        {
-            AudioPanel.SetActive(false);
-            SettingsPanel.SetActive(true);
-        }
-        //Cursor.visible = false;
-        //Cursor.lockState = CursorLockMode.Locked;
-    }
 
     public void OpenSaving()
     {
-        if (SavePanel != null)
-        {
-            SettingsPanel.SetActive(false);
-            SavePanel.SetActive(true);
-        }
-
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
+        Application.Quit();
     }
 
     public void OpenCrafting()
     {
-        if (InventoryPanel != null) InventoryPanel.SetActive(false);
+        if (playerLook != null)
+            playerLook.SetLookEnabled(false);
+
         if (SettingsPanel != null) SettingsPanel.SetActive(false);
         if (CraftingPanel != null) CraftingPanel.SetActive(true);
 
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
+        // Cursor.visible = true;
+        // Cursor.lockState = CursorLockMode.None;
     }
 
     public void CloseCrafting()
     {
+        if (playerLook != null && !InventoryPanel.activeSelf)
+            playerLook.SetLookEnabled(true);
+
+        if (InventoryPanel != null) SettingsPanel.SetActive(false);
         if (CraftingPanel != null) CraftingPanel.SetActive(false);
 
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        // Cursor.visible = false;
+        // Cursor.lockState = CursorLockMode.Locked;
     }
 }

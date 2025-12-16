@@ -51,7 +51,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8840059042894403380
 Transform:
   m_ObjectHideFlags: 0
@@ -60,7 +60,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8674172094755197259}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.33, y: -0.33, z: 0.53}
   m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_ConstrainProportionsScale: 0
@@ -132,6 +132,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   durability: 100
   baseDamage: 25
+  attackDetectionRange: 10
+  attackDetectionTime: 0.2
   fireRate: 4
   automatic: 0
   reloadTime: 2
@@ -142,9 +144,9 @@ MonoBehaviour:
   inputBuffer: 0.2
   bulletPrefab: {fileID: 7398615929915704883, guid: d039e829cb26e3448833dbcdd63d2fc8, type: 3}
   bulletSpawn: {fileID: 3052621842520952449}
-  bulletVelocity: 30
+  bulletVelocity: 100
   bulletPrefabLifeTime: 3
-  spreadAngleDegrees: 2
+  spreadAngleDegrees: 1
   spreadAngleDegreesADS: 0
   playerInput: {fileID: 0}
   muzzleFlash: {fileID: 299720065232666329}

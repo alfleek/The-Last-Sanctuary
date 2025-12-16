@@ -11,8 +11,10 @@ A tense zombie survival game where players scavenge, craft, and farm essential m
 3D | First-Person | Open-World Survival / Tower Defense
 
 ## To Play:
-Download the 'CurrentBuild' ZIP file, then right click and extract all. Once extracted, you can simply run the CurrentBuild executable by double clicking it.
-Google drive link to ZIP: https://drive.google.com/file/d/1cYZEWn-0NawQwdInK287bGdepesLVXt0/view?usp=sharing
+Recommended for performance:
+Download the 'TheLastSanctuary' ZIP file, then right click and extract all. Once extracted, you can simply run the TheLastSancturay executable by double clicking it.
+Google drive link to ZIP: https://drive.google.com/file/d/1v5SnjHJkGHfkTemOZZtUt73scLf8gUIw/view?usp=sharing
+To play on the web: https://alfleek.itch.io/the-last-sanctuary
 
 ## Check-In #1 : 
 - How did you structure your main game loop or update cycle in Unity?

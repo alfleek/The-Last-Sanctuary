@@ -7,8 +7,8 @@ TagManager:
   - CinemachineTarget
   - Target
   - Zombie
-  - Slots
   - ZombieHand
+  - Slots
   layers:
   - Default
   - TransparentFX
