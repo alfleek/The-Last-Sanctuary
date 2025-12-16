@@ -4,7 +4,7 @@
 A tense zombie survival game where players scavenge, craft, and farm essential materials to build and fortify a base. Every decision matters as you struggle to survive against relentless, roaming zombies in a harsh, post-apocalyptic world.
 
 ### Team/ Roles: 
-- Jazmin Carlos: Game Designer (Terrain & UI)  
+- Jazmin Carlos: Game Designer (Terrain, UI, Crafting System, Inventory System)  
 - Alexander Lewis: Game Programmer(Player Controls & Core Mechanics)
 
 ### Format: 
@@ -23,3 +23,27 @@ Google drive link to ZIP: https://drive.google.com/file/d/1cYZEWn-0NawQwdInK287b
 
 - How did you implement player controls (movement, jumping, camera/view rotation, etc.)?
 <t>Originally I implemented the PlayerMovement and MouseMovement scripts from the Canvas modules, however there were some issues. First of all, the player looking implementation would rotate the entire player object, wherever you were looking. This meant that when you looked up or down, your feet would be up in the air. To fix this, when the player looks around, the whole player model is rotated based on the x vector, while only the camera is rotated by the y vector. Additionally, I wanted to use Unity's new Input System, rather than relying on the default input manager. This gives more customization and flexibility to input schemes. Using it, I created basic input schemes for both keyboard & mouse, and gamepad. Additionally, I added look sensitivity scalars for both control schemes that can be manipulated seperately, and will be turned into sliders in our options menu in the future to easily adjust during play. The current movement consists of looking around, moving in any direction, jumping, and toggleable sprinting and crouching. Crouching and sprinting have different move speeds than walking. In the future, I'd like to add a setting to choose whether sprint and crouch are toggles or press and hold actions.
+
+# Final Check-In :
+## Features
+- Zombie Combat
+    -  Fight hostile zombies using weapons and tools
+    -  Basic enemy AI with chase and attack behavi
+- Inventory System
+    -  Pick up items from the world
+    -  Store weapons, resources, and materials
+    -  Items appear visually in inventory slots
+- Crafting System
+   -  Craft weapons and survival items
+   -  Recipes require specific materials
+   -  Craft button activates only when requirements are met
+Player Interaction
+- Player Interaction
+    -  Interact with objects in the world
+    -  Collect resources for survival and crafting
+    -  Camera and movement pause when menus are open
+- Survival Mechanics
+  -   Manage health, stamina, and hunger
+  -   Resources are required to stay alive
+- Data-Driven Design
+  -   Items and recipes defined using ScriptableObjects
