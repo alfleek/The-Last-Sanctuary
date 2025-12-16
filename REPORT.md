@@ -67,10 +67,41 @@ Settings and menu buttons appeared clickable but did not respond.
 
 ---
 
+### 6. Zombie not being hit by weapons/bullets
+**Problem:**  
+Bullets or other weapons were passing through the zombie without registering a hit
+
+**Cause:**  
+The differences between OnTriggerEnter and OnCollisionEnter mean that if some things aren't in the right place, they won't trigger
+
+**Fix:**  
+- Use OnTriggerEnter
+- Ensure One but not both of the colliders have IsTrigger = true  
+- Ensure that at least one of the objects has a RigidBody
+
+---
+
+### 7. Zombie not turning or moving properly
+**Problem:**  
+The Zombie would turn far too slowly, are would run at the wrong speed
+
+**Cause:**  
+The Zombie's Animator had Apply Root Motion enabled, meaning that the animations were applying movement to the zombie, and could lock out other movements like rotations
+
+**Fix:**  
+- Turn off Apply Root Motion
+- Then use other methods like the NavMeshAgent to apply motion or rotation to the Zombie
+- Alternatively, make sure your animations don't have root motions with them! Can happen with walking animations and the like
+
+---
+
 ## Lessons Learned
 
 - Always validate `Resources.Load()` results  
 - Keep UI visuals synchronized with game data  
 - ScriptableObjects simplify data-driven systems  
-- Small naming mismatches can cause major bugs  
+- Small naming mismatches can cause major bugs
+- Don't have logic too spread out, you'll get confused
+- Write extensable code; writing a Weapon script meant that once I had created one weapon, adding more was easy
+- Learn how to use Git effectively, and especially with Unity, avoid merge conflicts -- they're especially nasty with scenes or prefabs 
 
