@@ -14,15 +14,14 @@ public class RecipeHandler : MonoBehaviour
     public Text ObjectTitle;
     public Text Description;
     public Image ObjectImage;
-    public List<Text> ingredientTexts;   // Use a list instead of separate fields
+    public List<Text> ingredientTexts;
     public List<Text> neededTexts;
     public List<Text> haveTexts;
 
-    // Call this when a button is clicked
+    public RecipeSO currentRecipe; // currently selected recipe
+
     public void OnButtonClicked(string recipeName)
     {
-        Debug.Log("Button IS being clicked");
-
         RecipeSO recipe = FindRecipeByName(recipeName);
         if (recipe == null)
         {
@@ -30,22 +29,34 @@ public class RecipeHandler : MonoBehaviour
             return;
         }
 
+        currentRecipe = recipe;
+
         // Update UI
         ObjectTitle.text = recipe.recipeName;
         Description.text = recipe.description;
         ObjectImage.sprite = recipe.icon;
 
         for (int i = 0; i < ingredientTexts.Count; i++)
-            ingredientTexts[i].text = i < recipe.neededIngredients.Count ? recipe.neededIngredients[i] : "";
+        {
+            if (i < recipe.neededIngredients.Count)
+            {
+                string ingredient = recipe.neededIngredients[i];
+                int needed = recipe.NumNeededIngredients[i];
+                int have = InventorySystem.Instance.CountItem(ingredient);
 
-        for (int i = 0; i < neededTexts.Count; i++)
-            neededTexts[i].text = i < recipe.NumNeededIngredients.Count ? recipe.NumNeededIngredients[i] : "";
-
-        for (int i = 0; i < haveTexts.Count; i++)
-            haveTexts[i].text = i < recipe.NumAvalaibleIngredients.Count ? recipe.NumAvalaibleIngredients[i] : "";
+                ingredientTexts[i].text = ingredient;
+                neededTexts[i].text = needed.ToString();
+                haveTexts[i].text = have.ToString();
+            }
+            else
+            {
+                ingredientTexts[i].text = "";
+                neededTexts[i].text = "";
+                haveTexts[i].text = "";
+            }
+        }
     }
 
-    // Search through all databases
     private RecipeSO FindRecipeByName(string name)
     {
         foreach (var db in new RecipeDatabase[] { survivalRecipes, medicalRecipes, foodRecipes, weaponRecipes })

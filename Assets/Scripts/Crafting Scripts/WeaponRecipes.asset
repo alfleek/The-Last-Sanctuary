@@ -13,11 +13,8 @@ MonoBehaviour:
   m_Name: WeaponRecipes
   m_EditorClassIdentifier: 
   recipes:
-  - {fileID: 11400000, guid: 9a96d0c75a370a8498e8b80c2a32386e, type: 2}
   - {fileID: 11400000, guid: 7033eb4e9e505b2498382ad0d7e400ca, type: 2}
   - {fileID: 11400000, guid: df3d2ed452529f54fb0c3c9743e5e1c0, type: 2}
   - {fileID: 11400000, guid: 3dcb465fd42949c4a8b014281dcac4c7, type: 2}
   - {fileID: 11400000, guid: 01674d288bd2f3f418090f81fad36267, type: 2}
   - {fileID: 11400000, guid: b054b583d14933447aeed8eebe323dbe, type: 2}
-  - {fileID: 11400000, guid: a492304b090754a4c93a9b83f4755852, type: 2}
-  - {fileID: 11400000, guid: 810e5349084dd424795f0211f5314f31, type: 2}

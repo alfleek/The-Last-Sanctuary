@@ -35,9 +35,9 @@ public class PlayerMotor : MonoBehaviour
     private float thirst;
 
     [Header("Depletion Rates")]
-    public float staminaDrainSprint = 1f;  // per second
-    public float staminaRegen = 5f;          // per second
-    public float hungerDrainMove = 0.3f;     // per second
+    public float staminaDrainSprint = 0.01f;  // per second
+    public float staminaRegen = 0.5f;          // per second
+    public float hungerDrainMove = 1f;     // per second
     public float thirstDrainMove = 0.6f;     // per second
 
     [Header("Health Penalty")]
@@ -77,7 +77,6 @@ public class PlayerMotor : MonoBehaviour
         if (health <= 0)
             Die();
 
-        //if (isMoving == true){ Debug.Log("Moving"); }
 
     }
 
@@ -115,7 +114,7 @@ public class PlayerMotor : MonoBehaviour
     public void HandleVitals()
     {
         // STAMINA
-        if (sprinting && isMoving)
+        if (sprinting || isMoving)
         {
             stamina -= staminaDrainSprint * Time.deltaTime;
             if (stamina <= 0)
