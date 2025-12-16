@@ -7,7 +7,7 @@ public class PlayerMotor : MonoBehaviour
     private CharacterController controller;
     private Vector3 playerVelocity;
     private bool isGrounded;
-    private float speed;
+    public float speed{ get; private set; }
     public float walkSpeed = 5f;
     public float sprintSpeed = 8f;
     public float crouchSpeed = 3f;
@@ -101,4 +101,6 @@ public class PlayerMotor : MonoBehaviour
         sprinting = !sprinting;
         
     }
+
+    
 }

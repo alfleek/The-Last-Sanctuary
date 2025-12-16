@@ -9,7 +9,7 @@ public class InputManager : MonoBehaviour
 {
     private PlayerControls playerControls;
     private PlayerInput playerInput;
-    private Weapon equippedWeapon;
+    public Weapon equippedWeapon{ get; private set; }
     public PlayerControls.OnFootActions onFoot;
 
     private PlayerMotor motor;
