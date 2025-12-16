@@ -17,7 +17,7 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: b1ca4739b71c41647a52033b4fcbe175, type: 3}
   neededIngredients:
   - Metal
-  - Gunpowder
+  - Stone
   NumNeededIngredients:
   - 3
   - 2

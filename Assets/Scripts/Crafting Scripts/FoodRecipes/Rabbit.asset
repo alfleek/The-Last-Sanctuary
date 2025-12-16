@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   recipeName: Deer
   description: You gotta eat Something..
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 7100808df08bfaf4280eb47dad4b086b, type: 3}
   neededIngredients:
-  - Rabbit Meat
+  - Meat
   - Cooking Pot
   NumNeededIngredients:
   - 1

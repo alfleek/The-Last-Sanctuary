@@ -28,15 +28,12 @@ public class PanelManagement : MonoBehaviour
     public Image hungerBar;
     public Text hungerLeft;
 
-    [Header("Hunger Elements")]
-    public Image thirstBar;
-    public Text thirstLeft;
-
     [Header("Direction Elements")]
     public Transform player;
     public Text Direction;
 
     public PlayerMotor playerMoter;
+    public PlayerLook playerLook;
 
     // Placeholders for Testing
     private float health;
@@ -50,6 +47,8 @@ public class PanelManagement : MonoBehaviour
     public Text DayDisplay;
     public TimeManager timeManager;
 
+    
+
     void Start()
     {
         if (MainPanel != null) MainPanel.SetActive(true);
@@ -60,13 +59,15 @@ public class PanelManagement : MonoBehaviour
         if (CraftingPanel != null) CraftingPanel.SetActive(false);
         if (inventoryButton != null) inventoryButton.gameObject.SetActive(true);
 
-        if (playerMoter == null)
-            playerMoter = FindObjectOfType<PlayerMotor>();
+        if (playerMoter == null) playerMoter = FindObjectOfType<PlayerMotor>();
+
+        if (playerLook == null) playerLook = FindObjectOfType<PlayerLook>();
     }
 
     void Update()
     {
-        if (Time.timeScale == 0f) return;
+        if (playerMoter == null) return;
+
         UpdateUI();
 
         if (Input.GetKeyDown(KeyCode.Q))
@@ -98,9 +99,9 @@ public class PanelManagement : MonoBehaviour
     {
         if (healthBar != null)
         {
-            health = Mathf.RoundToInt(playerMoter.getMaxHealth());
+            health = Mathf.RoundToInt(playerMoter.getHealth());
             healthLeft.text = health.ToString();
-            healthBar.fillAmount = health / 100;
+            healthBar.fillAmount = health / playerMoter.getMaxHunger();
         }
         if (staminaBar != null)
         {
@@ -115,14 +116,6 @@ public class PanelManagement : MonoBehaviour
             hungerLeft.text = hunger.ToString();
             hungerBar.fillAmount = hunger / playerMoter.getMaxHunger(); ;
         }
-
-        if (thirstBar != null)
-        {
-            thirst = Mathf.RoundToInt(playerMoter.getThirst());
-            thirstLeft.text = thirst.ToString();
-            thirstBar.fillAmount = thirst / playerMoter.getMaxThirst();
-        }
-
 
         if (Direction != null && player != null)
         {
@@ -170,6 +163,9 @@ public class PanelManagement : MonoBehaviour
     // Opening Panels 
     public void OpenInventory()
     {
+        if (playerLook != null)
+            playerLook.SetLookEnabled(false);
+
         if (SettingsPanel != null && SettingsPanel.activeSelf)
             CloseSettings();
         if (InventoryPanel != null) InventoryPanel.SetActive(true);
@@ -182,6 +178,10 @@ public class PanelManagement : MonoBehaviour
 
     public void CloseInventory()
     {
+
+        if (playerLook != null)
+            playerLook.SetLookEnabled(true);
+
         if (InventoryPanel != null) InventoryPanel.SetActive(false);
         if (inventoryButton != null) inventoryButton.gameObject.SetActive(true);
         
@@ -192,6 +192,9 @@ public class PanelManagement : MonoBehaviour
 
     public void OpenSettings()
     {
+        if (playerLook != null)
+            playerLook.SetLookEnabled(false);
+
         if (InventoryPanel != null && InventoryPanel.activeSelf)
             CloseInventory();
 
@@ -206,7 +209,12 @@ public class PanelManagement : MonoBehaviour
 
     public void CloseSettings()
     {
+
+        if (playerLook != null)
+            playerLook.SetLookEnabled(true);
+
         Debug.Log("Close Settings");
+
         if (SettingsPanel != null) SettingsPanel.SetActive(false);
         if (MainPanel != null) MainPanel.SetActive(true);
 
@@ -275,6 +283,9 @@ public class PanelManagement : MonoBehaviour
 
     public void OpenCrafting()
     {
+        if (playerLook != null)
+            playerLook.SetLookEnabled(false);
+
         if (InventoryPanel != null) InventoryPanel.SetActive(false);
         if (SettingsPanel != null) SettingsPanel.SetActive(false);
         if (CraftingPanel != null) CraftingPanel.SetActive(true);
@@ -285,6 +296,9 @@ public class PanelManagement : MonoBehaviour
 
     public void CloseCrafting()
     {
+        if (playerLook != null)
+            playerLook.SetLookEnabled(true);
+
         if (CraftingPanel != null) CraftingPanel.SetActive(false);
 
         Cursor.visible = false;

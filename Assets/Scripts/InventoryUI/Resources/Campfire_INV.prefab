@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4255889718491004697}
   - component: {fileID: 6410815960354156253}
   m_Layer: 5
-  m_Name: Bandage_INV
+  m_Name: Campfire_INV
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -67,7 +67,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 75844603bf39149459d2ce2b238e62e3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 59b14645daf00c542ab20b6770f928db, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
