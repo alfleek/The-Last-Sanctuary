@@ -9,6 +9,8 @@ public class ZombieNavigation : MonoBehaviour
     public bool playerAggro;
     private NavMeshAgent agent;
     public Animator animator;
+    public ZombieHand zombieHand;
+    public int zombieDamage;
     private float speed;
     [SerializeField] private float attackTimer;
     [SerializeField] private float health = 100f;
@@ -23,6 +25,7 @@ public class ZombieNavigation : MonoBehaviour
         //     agent.destination = player.position;
         // }
         lastAttack = attackTimer;
+        zombieHand.damage = zombieDamage;
     }
 
     public void TakeDamage(float damageAmount)

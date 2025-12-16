@@ -67,11 +67,13 @@ public class Gun : Weapon
     {
         if (isReloading) return;
         isAiming = true;
+        animator.SetBool("ADS", true);
     }
 
     public override void AltHoldAttackStop()
     {
         isAiming = false;
+        animator.SetBool("ADS", false);
     }
 
     public override void SingleAttack()

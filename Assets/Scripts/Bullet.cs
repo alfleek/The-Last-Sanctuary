@@ -4,38 +4,82 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public float bulletDamage;
+    public float bulletDamage = 25f;
     public GameObject bloodSprayPrefab;
-    private void OnCollisionEnter(Collision collision)
+    public LayerMask hitMask = ~0;   // what the bullet can hit
+
+    private Rigidbody rb;
+    private Vector3 previousPosition;
+    private bool hasHit;
+
+    private void Awake()
     {
-        if (collision.gameObject.CompareTag("Target"))
+        rb = GetComponent<Rigidbody>();
+    }
+
+    private void OnEnable()
+    {
+        previousPosition = transform.position;
+        hasHit = false;
+    }
+
+    private void FixedUpdate()
+    {
+        if (hasHit) return;
+
+        Vector3 currentPosition = rb.position;
+        Vector3 displacement = currentPosition - previousPosition;
+        float distance = displacement.magnitude;
+
+        if (distance > 0f)
         {
-            Debug.Log("hit " + collision.gameObject.name + " !");
-            Destroy(gameObject);
+            RaycastHit hit;
+            if (Physics.Raycast(
+                    previousPosition,
+                    displacement.normalized,
+                    out hit,
+                    distance,
+                    hitMask,
+                    QueryTriggerInteraction.Collide))
+            {
+                HandleHit(hit);
+                return;
+            }
         }
 
-        if (collision.gameObject.CompareTag("Zombie"))
-        {
+        previousPosition = currentPosition;
+    }
 
-            if (!collision.transform.root.gameObject.GetComponent<ZombieNavigation>().dead)
+    private void HandleHit(RaycastHit hit)
+    {
+        hasHit = true;
+        Collider other = hit.collider;
+
+        if (other.CompareTag("Zombie") || other.CompareTag("ZombieHand"))
+        {
+            float mult = other.GetComponent<ZombieHitbox>().damageMult;
+            var zombie = other.transform.root.GetComponent<ZombieNavigation>();
+            if (zombie != null && !zombie.dead)
             {
-                collision.transform.root.gameObject.GetComponent<ZombieNavigation>().TakeDamage(bulletDamage);
+                zombie.TakeDamage(bulletDamage * mult);
             }
-            
-            CreateBloodSpray(collision);
-            Destroy(gameObject);
+
+            CreateBloodSpray(other.transform, hit.point, hit.normal);
         }
 
         Destroy(gameObject);
-
     }
 
-    private void CreateBloodSpray(Collision collision)
+    private void CreateBloodSpray(Transform parent, Vector3 hitPoint, Vector3 hitNormal)
     {
-        ContactPoint contact = collision.contacts[0];
+        if (bloodSprayPrefab == null) return;
 
-        GameObject bloodSpray = Instantiate(bloodSprayPrefab, contact.point, Quaternion.LookRotation(contact.normal));
+        GameObject blood = Instantiate(
+            bloodSprayPrefab,
+            hitPoint,
+            Quaternion.LookRotation(hitNormal)
+        );
 
-        bloodSpray.transform.SetParent(collision.gameObject.transform);
+        blood.transform.SetParent(parent);
     }
 }

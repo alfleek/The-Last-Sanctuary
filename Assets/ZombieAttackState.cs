@@ -20,15 +20,18 @@ public class ZombieAttackState : StateMachineBehaviour
             }
         }
         agent = animator.GetComponent<NavMeshAgent>();
+        agent.updateRotation = false;
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         LookAtPlayer();
 
-        float distanceFromPlayer = Vector3.Distance(player.position, animator.transform.position);
+        Vector3 toPlayer = player.position - animator.transform.position;
+        float sqrDistance = toPlayer.sqrMagnitude;
+        float sqrStopDist = stopAttackingDistance * stopAttackingDistance;
 
-        if (distanceFromPlayer > stopAttackingDistance)
+        if (sqrDistance > sqrStopDist)
         {
             animator.SetBool("Chasing", true);
         }
@@ -37,14 +40,18 @@ public class ZombieAttackState : StateMachineBehaviour
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         animator.SetBool("Attacking", false);
+        agent.updateRotation = true;
     }
 
     private void LookAtPlayer()
     {
         Vector3 direction = player.position - agent.transform.position;
-        agent.transform.rotation = Quaternion.LookRotation(direction);
+        direction.y = 0f;
 
-        var yRotation = agent.transform.eulerAngles.y;
-        agent.transform.rotation = Quaternion.Euler(0, yRotation, 0);
+        if (direction.sqrMagnitude > 0.001f)
+        {
+            Quaternion lookRotation = Quaternion.LookRotation(direction);
+            agent.transform.rotation = Quaternion.Slerp(agent.transform.rotation, lookRotation, Time.deltaTime * 5f);
+        }
     }
 }

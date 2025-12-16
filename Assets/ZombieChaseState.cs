@@ -31,8 +31,8 @@ public class ZombieChaseState : StateMachineBehaviour
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        agent.SetDestination(player.position);
-        animator.transform.LookAt(player);
+        if(agent.isActiveAndEnabled) agent.SetDestination(player.position);
+        //animator.transform.LookAt(player);
 
         float distanceFromPlayer = Vector3.Distance(player.position, animator.transform.position);
 

@@ -77,7 +77,7 @@ public class PlayerMotor : MonoBehaviour
         if (health <= 0)
             Die();
 
-        if (isMoving == true){ Debug.Log("Moving"); }
+        //if (isMoving == true){ Debug.Log("Moving"); }
 
     }
 
@@ -173,6 +173,11 @@ public class PlayerMotor : MonoBehaviour
         health = Mathf.Clamp(health, 0, maxHealth);
     }
 
+    public void TakeDamage(float damageAmount)
+    {
+        health -= damageAmount;
+    }
+
     public void Die()
     {
         isDead = true;
@@ -182,6 +187,15 @@ public class PlayerMotor : MonoBehaviour
         Debug.Log("Player has died.");
 
 
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("ZombieHand"))
+        {
+            Debug.Log("Player hit");
+            TakeDamage(other.gameObject.GetComponent<ZombieHand>().damage);
+        }
     }
 
     public float getHealth() => health;
