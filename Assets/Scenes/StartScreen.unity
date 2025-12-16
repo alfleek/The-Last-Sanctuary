@@ -2634,6 +2634,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: HowToPanel
       objectReference: {fileID: 0}
+    - target: {fileID: 4931363392566188650, guid: 19bd8f63b51ea3546b3e94a3f61e6e8f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6120337400470668747, guid: 19bd8f63b51ea3546b3e94a3f61e6e8f, type: 3}
+      propertyPath: m_Text
+      value: '
+
+        Mouse - Look Around
+
+        W - Move Forward
+
+        D
+        - Move Right
+
+        A - Move Left
+
+        S - Move Backward
+
+
+
+        Esc
+        - Settings
+
+        E - Inventory
+
+        Q - Crafting '
+      objectReference: {fileID: 0}
     - target: {fileID: 8956060050250158659, guid: 19bd8f63b51ea3546b3e94a3f61e6e8f, type: 3}
       propertyPath: m_Camera
       value: 

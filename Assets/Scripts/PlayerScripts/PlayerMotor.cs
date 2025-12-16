@@ -6,7 +6,8 @@ public class PlayerMotor : MonoBehaviour
     private CharacterController controller;
     private Vector3 playerVelocity;
     private bool isGrounded;
-    public float speed{ get; private set; }
+
+    private float speed;
     public float walkSpeed = 5f;
     public float sprintSpeed = 8f;
     public float crouchSpeed = 3f;
@@ -35,9 +36,9 @@ public class PlayerMotor : MonoBehaviour
     private float thirst;
 
     [Header("Depletion Rates")]
-    public float staminaDrainSprint = 1f;  // per second
-    public float staminaRegen = 5f;          // per second
-    public float hungerDrainMove = 0.3f;     // per second
+    public float staminaDrainSprint = 0.01f;  // per second
+    public float staminaRegen = 0.5f;          // per second
+    public float hungerDrainMove = 1f;     // per second
     public float thirstDrainMove = 0.6f;     // per second
 
     [Header("Health Penalty")]
@@ -77,7 +78,6 @@ public class PlayerMotor : MonoBehaviour
         if (health <= 0)
             Die();
 
-        //if (isMoving == true){ Debug.Log("Moving"); }
 
     }
 
@@ -115,7 +115,7 @@ public class PlayerMotor : MonoBehaviour
     public void HandleVitals()
     {
         // STAMINA
-        if (sprinting && isMoving)
+        if (sprinting || isMoving)
         {
             stamina -= staminaDrainSprint * Time.deltaTime;
             if (stamina <= 0)
@@ -173,11 +173,6 @@ public class PlayerMotor : MonoBehaviour
         health = Mathf.Clamp(health, 0, maxHealth);
     }
 
-    public void TakeDamage(float damageAmount)
-    {
-        health -= damageAmount;
-    }
-
     public void Die()
     {
         isDead = true;
@@ -187,15 +182,6 @@ public class PlayerMotor : MonoBehaviour
         Debug.Log("Player has died.");
 
 
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("ZombieHand"))
-        {
-            Debug.Log("Player hit");
-            TakeDamage(other.gameObject.GetComponent<ZombieHand>().damage);
-        }
     }
 
     public float getHealth() => health;
@@ -253,6 +239,4 @@ public class PlayerMotor : MonoBehaviour
         sprinting = !sprinting;
         
     }
-
-    
 }
