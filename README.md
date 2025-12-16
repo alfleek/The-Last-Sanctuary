@@ -10,10 +10,11 @@ A tense zombie survival game where players scavenge, craft, and farm essential m
 ### Format: 
 3D | First-Person | Open-World Survival / Tower Defense
 
-## To Play:
-Recommended for performance:
+# To Play:
+Recommended for performance:  
 Download the 'TheLastSanctuary' ZIP file, then right click and extract all. Once extracted, you can simply run the TheLastSancturay executable by double clicking it.
-Google drive link to ZIP: https://drive.google.com/file/d/1v5SnjHJkGHfkTemOZZtUt73scLf8gUIw/view?usp=sharing
+Google drive link to ZIP: https://drive.google.com/file/d/1v5SnjHJkGHfkTemOZZtUt73scLf8gUIw/view?usp=sharing  
+  
 To play on the web: https://alfleek.itch.io/the-last-sanctuary
 
 ## Check-In #1 : 
