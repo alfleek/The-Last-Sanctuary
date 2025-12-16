@@ -166,22 +166,22 @@ public class PanelManagement : MonoBehaviour
         if (InventoryPanel != null) InventoryPanel.SetActive(true);
         if (inventoryButton != null) inventoryButton.gameObject.SetActive(false);
 
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
+        // Cursor.visible = true;
+        // Cursor.lockState = CursorLockMode.None;
     }
 
     public void CloseInventory()
     {
 
-        if (playerLook != null)
+        if (playerLook != null && !CraftingPanel.activeSelf)
             playerLook.SetLookEnabled(true);
 
         if (InventoryPanel != null) InventoryPanel.SetActive(false);
         if (inventoryButton != null) inventoryButton.gameObject.SetActive(true);
         
 
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        // Cursor.visible = false;
+        // Cursor.lockState = CursorLockMode.Locked;
     }
 
     public void OpenSettings()
@@ -195,8 +195,8 @@ public class PanelManagement : MonoBehaviour
         if (SettingsPanel != null) SettingsPanel.SetActive(true);
         if (MainPanel != null) MainPanel.SetActive(false);
 
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
+        // Cursor.visible = true;
+        // Cursor.lockState = CursorLockMode.None;
 
         Time.timeScale = 0f;
     }
@@ -204,7 +204,7 @@ public class PanelManagement : MonoBehaviour
     public void CloseSettings()
     {
 
-        if (playerLook != null)
+        if (playerLook != null && !InventoryPanel.activeSelf && !CraftingPanel.activeSelf)
             playerLook.SetLookEnabled(true);
 
         Debug.Log("Close Settings");
@@ -212,8 +212,8 @@ public class PanelManagement : MonoBehaviour
         if (SettingsPanel != null) SettingsPanel.SetActive(false);
         if (MainPanel != null) MainPanel.SetActive(true);
 
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        // Cursor.visible = false;
+        // Cursor.lockState = CursorLockMode.Locked;
 
         Time.timeScale = 1f;
     }
@@ -232,19 +232,19 @@ public class PanelManagement : MonoBehaviour
         if (SettingsPanel != null) SettingsPanel.SetActive(false);
         if (CraftingPanel != null) CraftingPanel.SetActive(true);
 
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
+        // Cursor.visible = true;
+        // Cursor.lockState = CursorLockMode.None;
     }
 
     public void CloseCrafting()
     {
-        if (playerLook != null)
+        if (playerLook != null && !InventoryPanel.activeSelf)
             playerLook.SetLookEnabled(true);
 
         if (InventoryPanel != null) SettingsPanel.SetActive(false);
         if (CraftingPanel != null) CraftingPanel.SetActive(false);
 
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        // Cursor.visible = false;
+        // Cursor.lockState = CursorLockMode.Locked;
     }
 }

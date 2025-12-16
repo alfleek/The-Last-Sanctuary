@@ -48,17 +48,17 @@ public class InventorySystem : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.I) && !isOpen)
-        {
-            Cursor.lockState = CursorLockMode.None;
-            inventoryScreenUI.SetActive(true);
-            isOpen = true;
-        }
-        else if (Input.GetKeyDown(KeyCode.I) && isOpen)
-        {
-            inventoryScreenUI.SetActive(false);
-            isOpen = false;
-        }
+        // if (Input.GetKeyDown(KeyCode.I) && !isOpen)
+        // {
+        //     Cursor.lockState = CursorLockMode.None;
+        //     inventoryScreenUI.SetActive(true);
+        //     isOpen = true;
+        // }
+        // else if (Input.GetKeyDown(KeyCode.I) && isOpen)
+        // {
+        //     inventoryScreenUI.SetActive(false);
+        //     isOpen = false;
+        // }
     }
 
     public void addToInventory(string itemName)

@@ -46,7 +46,7 @@ public class SelectionManager : MonoBehaviour
             {
                 onTarget = true;
                 SelectedObject = interactable.gameObject;
-                interaction_text.text = selectionTransform.GetComponent<InteractableObject>().GetItemName();
+                interaction_text.text = selectionTransform.GetComponent<InteractableObject>().GetItemName() + "\n (F) Pick Up";
                 interaction_Info_UI.SetActive(true);
             }
             else
