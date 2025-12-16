@@ -31,7 +31,7 @@ public class PlayerInteract : MonoBehaviour
             if(hitInfo.collider.GetComponent<Interactable>() != null)
             {
                 Interactable interactable = hitInfo.collider.GetComponent<Interactable>();
-                playerUI.UpdateText(interactable.promptMessage);
+                playerUI.UpdateText(interactable.promptMessage + "\n(F) Pick Up");
                 if (inputManager.onFoot.Interact.WasPressedThisFrame())
                 {
                     interactable.BaseInteract();
