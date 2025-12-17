@@ -17,7 +17,6 @@ public class CraftItem : MonoBehaviour
         if (recipeHandler == null)
             recipeHandler = FindObjectOfType<RecipeHandler>();
 
-        craftitem.onClick.AddListener(Craft);
     }
 
     void Update()
@@ -70,5 +69,10 @@ public class CraftItem : MonoBehaviour
         Debug.Log("2 .Crafted Item is :"+recipe.craftedItemName);
         InventorySystem.Instance.addToInventory(recipe.craftedItemName);
 
+    }
+
+    public void DebugHelp()
+    {
+        Debug.Log("Button pressed");
     }
 }
