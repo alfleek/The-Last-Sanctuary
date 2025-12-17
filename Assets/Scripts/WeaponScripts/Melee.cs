@@ -24,6 +24,7 @@ public class Melee : Weapon
     {
         animator = GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMotor>();
+        cam = player.GetComponentInChildren<Camera>();
     }
 
     void Start()
