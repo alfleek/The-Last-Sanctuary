@@ -13,7 +13,7 @@ A tense zombie survival game where players scavenge, craft, and farm essential m
 # To Play:
 Recommended for performance:  
 Download the 'TheLastSanctuary' ZIP file, then right click and extract all. Once extracted, you can simply run the TheLastSancturay executable by double clicking it.
-Google drive link to ZIP: https://drive.google.com/file/d/1v5SnjHJkGHfkTemOZZtUt73scLf8gUIw/view?usp=sharing  
+Google drive link to ZIP: [The Last Sanctuary](https://drive.google.com/drive/folders/1gW4OA5XpXILpTWDFBOUEIUpEWjdXy1Nm?usp=drive_link) 
   
 To play on the web: https://alfleek.itch.io/the-last-sanctuary
 
