@@ -65,7 +65,7 @@ public class PanelManagement : MonoBehaviour
 
         UpdateUI();
 
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             if (InventoryPanel.activeSelf)
                 CloseInventory();
@@ -81,7 +81,7 @@ public class PanelManagement : MonoBehaviour
                 OpenSettings();
         }
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
             if (CraftingPanel.activeSelf)
                 CloseCrafting();
