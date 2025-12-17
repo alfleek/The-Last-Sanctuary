@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 public class PlayerMotor : MonoBehaviour
 {
     private CharacterController controller;
@@ -48,12 +49,14 @@ public class PlayerMotor : MonoBehaviour
 
     private float hungerHealthTimer = 0f;
     private float thirstHealthTimer = 0f;
+    public Image damageEffect;
 
     private bool isMoving = false;
     private bool isDead = false;
 
 
-    // Start is called before the first frame update
+
+    
     void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -183,7 +186,11 @@ public class PlayerMotor : MonoBehaviour
     public void TakeDamage(float damageAmount)
     {
         health -= damageAmount;
+        if(!damageEffect.gameObject.activeSelf) damageEffect.gameObject.SetActive(true);
+        damageEffect.GetComponent<CanvasRenderer>().SetAlpha(1f);
+        damageEffect.CrossFadeAlpha(0, 2.0f, false);
     }
+
 
     public void Die()
     {
