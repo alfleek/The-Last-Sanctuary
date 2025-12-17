@@ -125,6 +125,60 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ScrollHotbar"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""d0dbd53b-2792-4cc8-b254-1b54eb4beb07"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SelectHotbar1"",
+                    ""type"": ""Button"",
+                    ""id"": ""246f41db-a18e-4607-8659-276c872e0973"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SelectHotbar2"",
+                    ""type"": ""Button"",
+                    ""id"": ""0c5d2822-f637-4437-bee3-e3fb89e20925"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SelectHotbar3"",
+                    ""type"": ""Button"",
+                    ""id"": ""f8ca9d2e-cc81-44bf-a57f-25b7c59a7757"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SelectHotbar4"",
+                    ""type"": ""Button"",
+                    ""id"": ""86120864-c6a8-4687-a1a8-c6fd89e89e5a"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SelectHotbar5"",
+                    ""type"": ""Button"",
+                    ""id"": ""4ee99e79-7d03-43db-9752-20eeb7657134"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -411,6 +465,72 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": "";Gamepad"",
                     ""action"": ""Reload"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""95858979-3ed2-43bb-b45b-1aea3b1748ea"",
+                    ""path"": ""<Mouse>/scroll/y"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""ScrollHotbar"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""87e1ae28-be2f-4a04-ad54-9bfd46f1c68b"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""SelectHotbar1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5db5d15f-c335-42ae-91eb-afade4c5b022"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""SelectHotbar2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""272b9055-cbb6-4bfc-9303-dfddb0ff6522"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SelectHotbar3"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a050c2f4-da08-4cdf-9560-3f589e8e7439"",
+                    ""path"": ""<Keyboard>/4"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SelectHotbar4"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ea14c23e-919c-4db0-902e-8babd608b6d0"",
+                    ""path"": ""<Keyboard>/5"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SelectHotbar5"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1009,6 +1129,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_OnFoot_Sprint = m_OnFoot.FindAction("Sprint", throwIfNotFound: true);
         m_OnFoot_AltFire = m_OnFoot.FindAction("AltFire", throwIfNotFound: true);
         m_OnFoot_Reload = m_OnFoot.FindAction("Reload", throwIfNotFound: true);
+        m_OnFoot_ScrollHotbar = m_OnFoot.FindAction("ScrollHotbar", throwIfNotFound: true);
+        m_OnFoot_SelectHotbar1 = m_OnFoot.FindAction("SelectHotbar1", throwIfNotFound: true);
+        m_OnFoot_SelectHotbar2 = m_OnFoot.FindAction("SelectHotbar2", throwIfNotFound: true);
+        m_OnFoot_SelectHotbar3 = m_OnFoot.FindAction("SelectHotbar3", throwIfNotFound: true);
+        m_OnFoot_SelectHotbar4 = m_OnFoot.FindAction("SelectHotbar4", throwIfNotFound: true);
+        m_OnFoot_SelectHotbar5 = m_OnFoot.FindAction("SelectHotbar5", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1099,6 +1225,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_OnFoot_Sprint;
     private readonly InputAction m_OnFoot_AltFire;
     private readonly InputAction m_OnFoot_Reload;
+    private readonly InputAction m_OnFoot_ScrollHotbar;
+    private readonly InputAction m_OnFoot_SelectHotbar1;
+    private readonly InputAction m_OnFoot_SelectHotbar2;
+    private readonly InputAction m_OnFoot_SelectHotbar3;
+    private readonly InputAction m_OnFoot_SelectHotbar4;
+    private readonly InputAction m_OnFoot_SelectHotbar5;
     public struct OnFootActions
     {
         private @PlayerControls m_Wrapper;
@@ -1114,6 +1246,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @Sprint => m_Wrapper.m_OnFoot_Sprint;
         public InputAction @AltFire => m_Wrapper.m_OnFoot_AltFire;
         public InputAction @Reload => m_Wrapper.m_OnFoot_Reload;
+        public InputAction @ScrollHotbar => m_Wrapper.m_OnFoot_ScrollHotbar;
+        public InputAction @SelectHotbar1 => m_Wrapper.m_OnFoot_SelectHotbar1;
+        public InputAction @SelectHotbar2 => m_Wrapper.m_OnFoot_SelectHotbar2;
+        public InputAction @SelectHotbar3 => m_Wrapper.m_OnFoot_SelectHotbar3;
+        public InputAction @SelectHotbar4 => m_Wrapper.m_OnFoot_SelectHotbar4;
+        public InputAction @SelectHotbar5 => m_Wrapper.m_OnFoot_SelectHotbar5;
         public InputActionMap Get() { return m_Wrapper.m_OnFoot; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1156,6 +1294,24 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Reload.started += instance.OnReload;
             @Reload.performed += instance.OnReload;
             @Reload.canceled += instance.OnReload;
+            @ScrollHotbar.started += instance.OnScrollHotbar;
+            @ScrollHotbar.performed += instance.OnScrollHotbar;
+            @ScrollHotbar.canceled += instance.OnScrollHotbar;
+            @SelectHotbar1.started += instance.OnSelectHotbar1;
+            @SelectHotbar1.performed += instance.OnSelectHotbar1;
+            @SelectHotbar1.canceled += instance.OnSelectHotbar1;
+            @SelectHotbar2.started += instance.OnSelectHotbar2;
+            @SelectHotbar2.performed += instance.OnSelectHotbar2;
+            @SelectHotbar2.canceled += instance.OnSelectHotbar2;
+            @SelectHotbar3.started += instance.OnSelectHotbar3;
+            @SelectHotbar3.performed += instance.OnSelectHotbar3;
+            @SelectHotbar3.canceled += instance.OnSelectHotbar3;
+            @SelectHotbar4.started += instance.OnSelectHotbar4;
+            @SelectHotbar4.performed += instance.OnSelectHotbar4;
+            @SelectHotbar4.canceled += instance.OnSelectHotbar4;
+            @SelectHotbar5.started += instance.OnSelectHotbar5;
+            @SelectHotbar5.performed += instance.OnSelectHotbar5;
+            @SelectHotbar5.canceled += instance.OnSelectHotbar5;
         }
 
         private void UnregisterCallbacks(IOnFootActions instance)
@@ -1193,6 +1349,24 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Reload.started -= instance.OnReload;
             @Reload.performed -= instance.OnReload;
             @Reload.canceled -= instance.OnReload;
+            @ScrollHotbar.started -= instance.OnScrollHotbar;
+            @ScrollHotbar.performed -= instance.OnScrollHotbar;
+            @ScrollHotbar.canceled -= instance.OnScrollHotbar;
+            @SelectHotbar1.started -= instance.OnSelectHotbar1;
+            @SelectHotbar1.performed -= instance.OnSelectHotbar1;
+            @SelectHotbar1.canceled -= instance.OnSelectHotbar1;
+            @SelectHotbar2.started -= instance.OnSelectHotbar2;
+            @SelectHotbar2.performed -= instance.OnSelectHotbar2;
+            @SelectHotbar2.canceled -= instance.OnSelectHotbar2;
+            @SelectHotbar3.started -= instance.OnSelectHotbar3;
+            @SelectHotbar3.performed -= instance.OnSelectHotbar3;
+            @SelectHotbar3.canceled -= instance.OnSelectHotbar3;
+            @SelectHotbar4.started -= instance.OnSelectHotbar4;
+            @SelectHotbar4.performed -= instance.OnSelectHotbar4;
+            @SelectHotbar4.canceled -= instance.OnSelectHotbar4;
+            @SelectHotbar5.started -= instance.OnSelectHotbar5;
+            @SelectHotbar5.performed -= instance.OnSelectHotbar5;
+            @SelectHotbar5.canceled -= instance.OnSelectHotbar5;
         }
 
         public void RemoveCallbacks(IOnFootActions instance)
@@ -1386,6 +1560,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnSprint(InputAction.CallbackContext context);
         void OnAltFire(InputAction.CallbackContext context);
         void OnReload(InputAction.CallbackContext context);
+        void OnScrollHotbar(InputAction.CallbackContext context);
+        void OnSelectHotbar1(InputAction.CallbackContext context);
+        void OnSelectHotbar2(InputAction.CallbackContext context);
+        void OnSelectHotbar3(InputAction.CallbackContext context);
+        void OnSelectHotbar4(InputAction.CallbackContext context);
+        void OnSelectHotbar5(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

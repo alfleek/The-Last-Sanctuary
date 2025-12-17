@@ -2,11 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ZombieHand : MonoBehaviour
+public class EquippableItem : MonoBehaviour
 {
-
-    public float damage;
-    // Start is called before the first frame update
+    public GameObject EquipPrefab;
+    public GameObject EquipObject;
     void Start()
     {
         

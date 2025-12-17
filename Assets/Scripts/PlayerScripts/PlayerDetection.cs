@@ -26,7 +26,7 @@ public class PlayerDetection : MonoBehaviour
     {
         detectionRadius = player.speed;
         weapon = input.equippedWeapon;
-        if (weapon && weapon.attackDetectionTime > 0)
+        if (weapon && weapon.attackDetectionTimer > 0)
             detectionRadius += weapon.attackDetectionRange;
         return detectionRadius;
     }

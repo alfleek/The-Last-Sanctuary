@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6261615197500604072}
   - component: {fileID: 4255889718491004697}
   - component: {fileID: 6410815960354156253}
+  - component: {fileID: -5571014462496239869}
   m_Layer: 5
   m_Name: Gun
   m_TagString: Untagged
@@ -102,3 +103,17 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &-5571014462496239869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8547881112348942863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c3cd74063997cf409fa5fb4d27b951d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EquipPrefab: {fileID: 4355238037025872610, guid: 61786a29f372ef04d8d7425b2adda8d4, type: 3}
+  EquipObject: {fileID: 0}

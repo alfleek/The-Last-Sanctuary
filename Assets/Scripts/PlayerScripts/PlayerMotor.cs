@@ -7,7 +7,7 @@ public class PlayerMotor : MonoBehaviour
     private Vector3 playerVelocity;
     private bool isGrounded;
 
-    public float speed{ get; private set; }
+    public float speed { get; private set; }
     public float walkSpeed = 5f;
     public float sprintSpeed = 8f;
     public float crouchSpeed = 3f;
@@ -36,8 +36,9 @@ public class PlayerMotor : MonoBehaviour
     private float thirst;
 
     [Header("Depletion Rates")]
-    public float staminaDrainSprint = 0.01f;  // per second
+    public float staminaDrainSprint = 2f;  // per second
     public float staminaRegen = 0.5f;          // per second
+    public float staminaRegenWhenStill = 0.5f;          // per second
     public float hungerDrainMove = 1f;     // per second
     public float thirstDrainMove = 0.6f;     // per second
 
@@ -115,7 +116,7 @@ public class PlayerMotor : MonoBehaviour
     public void HandleVitals()
     {
         // STAMINA
-        if (sprinting || isMoving)
+        if (sprinting && isMoving)
         {
             stamina -= staminaDrainSprint * Time.deltaTime;
             if (stamina <= 0)
@@ -173,6 +174,17 @@ public class PlayerMotor : MonoBehaviour
         health = Mathf.Clamp(health, 0, maxHealth);
     }
 
+    public void StaminaDrain(float drain)
+    {
+        stamina -= drain;
+        stamina = Mathf.Clamp(stamina, 0, maxStamina);
+    }
+
+    public void TakeDamage(float damageAmount)
+    {
+        health -= damageAmount;
+    }
+
     public void Die()
     {
         isDead = true;
@@ -183,6 +195,9 @@ public class PlayerMotor : MonoBehaviour
 
 
     }
+
+
+
 
     public float getHealth() => health;
     public float getStamina() => stamina;
@@ -213,6 +228,8 @@ public class PlayerMotor : MonoBehaviour
     {
         if (isGrounded)
         {
+            if(stamina<=0) return;
+            StaminaDrain(5f);
             isMoving = true;
             playerVelocity.y = Mathf.Sqrt(jumpHeight * -3.0f * gravity);
         }
@@ -229,14 +246,14 @@ public class PlayerMotor : MonoBehaviour
 
     public void Sprint()
     {
-        
+
         if (crouching)
         {
             isMoving = true;
-            Crouch();    
+            Crouch();
         }
-        
+
         sprinting = !sprinting;
-        
+
     }
 }

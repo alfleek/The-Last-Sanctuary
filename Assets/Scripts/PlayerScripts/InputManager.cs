@@ -12,6 +12,7 @@ public class InputManager : MonoBehaviour
     public PanelManagement panelManager;
     public Weapon equippedWeapon{ get; private set; }
     public PlayerControls.OnFootActions onFoot;
+    public ToolBarSelection toolBar;
 
     private PlayerMotor motor;
     public PlayerLook look;
@@ -36,6 +37,13 @@ public class InputManager : MonoBehaviour
         onFoot.Jump.performed += ctx => motor.Jump();
         onFoot.Crouch.performed += ctx => motor.Crouch();
         onFoot.Sprint.performed += ctx => motor.Sprint();
+        onFoot.ScrollHotbar.performed += ctx => toolBar.NextSlot(ctx.ReadValue<float>());
+        onFoot.SelectHotbar1.performed += ctx => toolBar.SelectSlot(1);
+        onFoot.SelectHotbar2.performed += ctx => toolBar.SelectSlot(2);
+        onFoot.SelectHotbar3.performed += ctx => toolBar.SelectSlot(3);
+        onFoot.SelectHotbar4.performed += ctx => toolBar.SelectSlot(4);
+        onFoot.SelectHotbar5.performed += ctx => toolBar.SelectSlot(5);
+
     }
 
     private void OnControlsChanged(PlayerInput obj)
