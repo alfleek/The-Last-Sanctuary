@@ -10,7 +10,7 @@ public class ToolBarSelection : MonoBehaviour
     public int activeSlot = 0;
     private int maxSlots;
     public InputManager input;
-    
+
     void Start()
     {
         foreach (Transform child in transform)
@@ -38,51 +38,38 @@ public class ToolBarSelection : MonoBehaviour
 
         EquippableItem prevItem = null;
         EquippableItem nextItem = null;
-        
+
         if (prevItemCheck != null) prevItem = prevItemCheck.GetComponent<EquippableItem>();
         if (nextItemCheck != null) nextItem = nextItemCheck.GetComponent<EquippableItem>();
 
         if (prevItem != null && prevItem.EquipObject != null)
         {
-            input.UnequipWeapon();
-            prevItem.EquipObject.SetActive(false);
+            Unequip(prevItem);
         }
         if (nextItem != null && nextItem.EquipPrefab != null)
         {
-            if(nextItem.EquipObject == null)
-            {
-                GameObject parent = input.gameObject.transform.Find("Main Camera").gameObject;
-                nextItem.EquipObject = Instantiate(nextItem.EquipPrefab, parent.transform);
-                nextItem.EquipObject.SetActive(true);
-            }
-            else
-            {
-                nextItem.EquipObject.SetActive(true);
-            }
-            
-
-            input.EquipWeapon(nextItem.EquipObject.GetComponent<Weapon>());
+            Equip(nextItem);
         }
     }
 
     //Takes Count - Starts at 1
     public void SelectSlot(int slot)
     {
-        if(slot < 1 || slot > maxSlots) 
+        if (slot < 1 || slot > maxSlots)
             return;
-        if(slot - 1 == activeSlot)
+        if (slot - 1 == activeSlot)
             return;
         ActivateSlot(slot - 1);
     }
 
     public void NextSlot(float right)
-    {   
-        if(right == 0)
+    {
+        if (right == 0)
             return;
         int nextSlot = activeSlot + (right > 0 ? 1 : -1);
-        if(nextSlot < 0)
+        if (nextSlot < 0)
             nextSlot = maxSlots - 1;
-        if(nextSlot >= maxSlots)
+        if (nextSlot >= maxSlots)
             nextSlot = 0;
         ActivateSlot(nextSlot);
     }
@@ -90,5 +77,28 @@ public class ToolBarSelection : MonoBehaviour
     public GameObject GetActiveSlot()
     {
         return slotList[activeSlot].gameObject;
+    }
+
+    public void Unequip(EquippableItem item)
+    {
+        input.UnequipWeapon();
+        item.EquipObject.SetActive(false);
+    }
+
+    public void Equip(EquippableItem item)
+    {
+        if (item.EquipObject == null)
+        {
+            GameObject parent = input.gameObject.transform.Find("Main Camera").gameObject;
+            item.EquipObject = Instantiate(item.EquipPrefab, parent.transform);
+            item.EquipObject.SetActive(true);
+        }
+        else
+        {
+            item.EquipObject.SetActive(true);
+        }
+
+
+        input.EquipWeapon(item.EquipObject.GetComponent<Weapon>());
     }
 }
