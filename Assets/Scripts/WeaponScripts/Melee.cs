@@ -8,6 +8,7 @@ public class Melee : Weapon
     public float attackDistance;
     public float attackDelay;
     public float attackSpeed;
+    public float staminaPerSwing;
 
     bool attacking = false;
     bool attackInput = false;
@@ -15,23 +16,27 @@ public class Melee : Weapon
     public InputManager playerInput;
     public GameObject bloodSprayPrefab;
     public Camera cam;
+    public PlayerMotor player;
     public LayerMask attackLayer;
     private Animator animator;
 
     public void Awake()
     {
         animator = GetComponent<Animator>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMotor>();
     }
 
     void Start()
     {
         if (playerInput && gameObject.activeSelf) playerInput.EquipWeapon(gameObject.GetComponent<Melee>());
+        attackDetectionTimer = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
         if (attackInput) Attack();
+        attackDetectionTimer -= Time.deltaTime;
     }
 
     public override void HoldAttackStart()
@@ -48,8 +53,10 @@ public class Melee : Weapon
     {
         if (!readyToAttack || attacking) return;
 
+        player.StaminaDrain(staminaPerSwing);
         animator.SetTrigger("Attack");
 
+        attackDetectionTimer = attackDetectionTime;
         readyToAttack = false;
         attacking = true;
 
@@ -70,7 +77,6 @@ public class Melee : Weapon
     {
         if (Physics.Raycast(cam.transform.position, cam.transform.forward, out RaycastHit hit, attackDistance, attackLayer, QueryTriggerInteraction.Collide))
         {
-            Debug.Log("Raycast hit " + hit.collider);
             Collider other = hit.collider;
 
             if (other.CompareTag("Zombie") || other.CompareTag("ZombieHand"))

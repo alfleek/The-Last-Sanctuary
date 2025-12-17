@@ -90,6 +90,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 0}
+  equippable: 1
 --- !u!225 &6410815960354156253
 CanvasGroup:
   m_ObjectHideFlags: 0

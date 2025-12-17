@@ -34,6 +34,7 @@ public class Gun : Weapon
         animator = GetComponent<Animator>();
         remainingBullets = magazineSize;
         firingInterval = 1f / Mathf.Max(0.01f, fireRate);
+        attackDetectionTimer = 0;
     }
 
     public void Start()
@@ -44,7 +45,7 @@ public class Gun : Weapon
     public void Update()
     {
         lastShot -= Time.deltaTime;
-        attackDetectionTime -= Time.deltaTime;
+        attackDetectionTimer -= Time.deltaTime;
     }
     public override void HoldAttackStart()
     {
@@ -76,10 +77,11 @@ public class Gun : Weapon
         animator.SetBool("ADS", false);
     }
 
+    
     public override void SingleAttack()
     {
         lastShot = firingInterval;
-        attackDetectionTime = 0.2f;
+        attackDetectionTimer = attackDetectionTime;
         remainingBullets -= 1;
         muzzleFlash.GetComponent<ParticleSystem>().Play();
         animator.SetTrigger("RECOIL");

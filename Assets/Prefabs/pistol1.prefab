@@ -132,7 +132,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   durability: 100
   baseDamage: 25
-  attackDetectionRange: 10
+  attackDetectionRange: 30
   attackDetectionTime: 0.2
   fireRate: 4
   automatic: 0

@@ -125,9 +125,11 @@ MonoBehaviour:
   attackDistance: 3
   attackDelay: 0.6
   attackSpeed: 1.5
+  staminaPerSwing: 5
   playerInput: {fileID: 0}
   bloodSprayPrefab: {fileID: 8559013793426933825, guid: b2b6c63f19a60584c83afabe8515d9de, type: 3}
   cam: {fileID: 0}
+  player: {fileID: 0}
   attackLayer:
     serializedVersion: 2
     m_Bits: 128

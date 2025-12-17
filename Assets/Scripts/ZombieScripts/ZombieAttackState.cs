@@ -7,6 +7,7 @@ public class ZombieAttackState : StateMachineBehaviour
 {
     Transform player;
     NavMeshAgent agent;
+    ZombieAnimationRelay relay;
 
     public float stopAttackingDistance = 2f;
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -19,8 +20,12 @@ public class ZombieAttackState : StateMachineBehaviour
                 player = playerGO.transform;
             }
         }
-        agent = animator.GetComponent<NavMeshAgent>();
+        if(agent == null) agent = animator.GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
+
+        if(relay == null) relay = animator.GetComponent<ZombieAnimationRelay>();
+        relay.EndAttackWindow();
+
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -41,6 +46,7 @@ public class ZombieAttackState : StateMachineBehaviour
     {
         animator.SetBool("Attacking", false);
         agent.updateRotation = true;
+        relay.EndAttackWindow();
     }
 
     private void LookAtPlayer()
