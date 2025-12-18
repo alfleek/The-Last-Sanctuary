@@ -19,6 +19,7 @@ To play on the web: https://alfleek.itch.io/the-last-sanctuary
 
 ## Video Demo:
 A live demo of gameplay and features: https://youtu.be/IGY-KyX0Muc
+A video of the game presentaton : https://youtu.be/msr8LpustpM
 
 ## Check-In #1 : 
 - How did you structure your main game loop or update cycle in Unity?
