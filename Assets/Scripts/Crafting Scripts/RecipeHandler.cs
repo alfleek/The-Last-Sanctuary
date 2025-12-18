@@ -57,6 +57,38 @@ public class RecipeHandler : MonoBehaviour
         }
     }
 
+    public void RefreshRecipe()
+    {
+        RecipeSO recipe = currentRecipe;
+
+        currentRecipe = recipe;
+
+        // Update UI
+        ObjectTitle.text = recipe.recipeName;
+        Description.text = recipe.description;
+        ObjectImage.sprite = recipe.icon;
+
+        for (int i = 0; i < ingredientTexts.Count; i++)
+        {
+            if (i < recipe.neededIngredients.Count)
+            {
+                string ingredient = recipe.neededIngredients[i];
+                int needed = recipe.NumNeededIngredients[i];
+                int have = InventorySystem.Instance.CountItem(ingredient);
+
+                ingredientTexts[i].text = ingredient;
+                neededTexts[i].text = needed.ToString();
+                haveTexts[i].text = have.ToString();
+            }
+            else
+            {
+                ingredientTexts[i].text = "";
+                neededTexts[i].text = "";
+                haveTexts[i].text = "";
+            }
+        }
+    }
+
     private RecipeSO FindRecipeByName(string name)
     {
         foreach (var db in new RecipeDatabase[] { survivalRecipes, medicalRecipes, foodRecipes, weaponRecipes })

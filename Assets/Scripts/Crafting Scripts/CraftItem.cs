@@ -69,10 +69,7 @@ public class CraftItem : MonoBehaviour
         Debug.Log("2 .Crafted Item is :"+recipe.craftedItemName);
         InventorySystem.Instance.addToInventory(recipe.craftedItemName);
 
-    }
+        recipeHandler.RefreshRecipe();
 
-    public void DebugHelp()
-    {
-        Debug.Log("Button pressed");
     }
 }

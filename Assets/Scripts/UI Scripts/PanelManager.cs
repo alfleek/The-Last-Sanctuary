@@ -44,6 +44,7 @@ public class PanelManagement : MonoBehaviour
     public Text TimeDisplay;
     public Text DayDisplay;
     public TimeManager timeManager;
+    public RecipeHandler recipeHandler;
 
 
     void Start()
@@ -195,6 +196,8 @@ public class PanelManagement : MonoBehaviour
         if (SettingsPanel != null) SettingsPanel.SetActive(true);
         if (MainPanel != null) MainPanel.SetActive(false);
 
+        
+
         // Cursor.visible = true;
         // Cursor.lockState = CursorLockMode.None;
 
@@ -231,6 +234,8 @@ public class PanelManagement : MonoBehaviour
 
         if (SettingsPanel != null) SettingsPanel.SetActive(false);
         if (CraftingPanel != null) CraftingPanel.SetActive(true);
+
+        if (recipeHandler.currentRecipe != null) recipeHandler.RefreshRecipe();
 
         // Cursor.visible = true;
         // Cursor.lockState = CursorLockMode.None;

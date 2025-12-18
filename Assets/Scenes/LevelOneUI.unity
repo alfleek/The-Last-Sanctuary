@@ -68043,6 +68043,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 661343183946537091, guid: 68ad74c3e8cecc240a28fc099e13b6a4, type: 3}
+      propertyPath: recipeHandler
+      value: 
+      objectReference: {fileID: 84716212}
+    - target: {fileID: 661343183946537091, guid: 68ad74c3e8cecc240a28fc099e13b6a4, type: 3}
       propertyPath: InventoryPanel
       value: 
       objectReference: {fileID: 237385572}
