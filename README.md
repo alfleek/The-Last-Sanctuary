@@ -18,7 +18,8 @@ Google drive link to ZIP: [The Last Sanctuary](https://drive.google.com/drive/fo
 To play on the web: https://alfleek.itch.io/the-last-sanctuary
 
 ## Video Demo:
-A live demo of gameplay and features: https://youtu.be/IGY-KyX0Muc
+A live demo of gameplay and features: https://youtu.be/IGY-KyX0Muc 
+
 A video of the game presentaton : https://youtu.be/msr8LpustpM
 
 ## Check-In #1 : 
