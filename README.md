@@ -17,6 +17,9 @@ Google drive link to ZIP: [The Last Sanctuary](https://drive.google.com/drive/fo
   
 To play on the web: https://alfleek.itch.io/the-last-sanctuary
 
+## Video Demo:
+A live demo of gameplay and features: https://youtu.be/IGY-KyX0Muc
+
 ## Check-In #1 : 
 - How did you structure your main game loop or update cycle in Unity?
 <t>The main game loop is mostly handled by a InputManager script that works with unity's Input System. Within its Update() function, it calls two methods, ProcessMove() and ProcessLook() from the scripts PlayerMotor and PlayerLook. When calling these methods, it passes values read from the PlayerInput Input Action Asset that contains our control schemes. These functions then move the character and the camera accordingly. The InputManager script also subscribes several methods to PlayerInput, so that they can listen for when controls are used for certain actions. These methods are Jump, Crouch, Sprint, and OnControlsChanged (which is used to detect when the player swaps from K&B to gamepad or vice versa, to apply appropriate look sensitivity scalars). The use of the Input System means that innstead of having input reading within our player controller scripts, we simply create functions for different actions, that are called by the PlayerInput Input Action, which contains all of the actions with bindings to controls.
